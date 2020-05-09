@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { UserAuthService } from '../../services/user-auth.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalComponent } from '../modal/modal.component';
+import { Router } from "@angular/router"
 
 @Component({
   selector: 'app-login',
@@ -11,18 +12,31 @@ import { ModalComponent } from '../modal/modal.component';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(public userAuthService: UserAuthService, public modal: NgbModal) { }
+  constructor(public userAuthService: UserAuthService, public modal: NgbModal, private router: Router) { }
 
   ngOnInit(): void {
   }
 
   onSubmit(authForm: NgForm){
     this.userAuthService.setLogin(authForm.value).subscribe(res => {
+      
       const opts = {
         windowClass: 'myCustomClass'
       }
 
-      let respuesta = this.getResponse(res);
+      let head;
+      let token;
+      if (res['msg']){
+        head = { msg : res['msg'] };
+        token = { token: res['token'] };
+        this.userAuthService.getHome(token).subscribe(res => {
+          this.router.navigate(['home'])
+        });
+      }else if (res['error']){
+        head = { error : res['error'] };
+      }
+
+      let respuesta = this.getResponse(head);
 
       const resp = this.modal.open(ModalComponent, opts)
       resp.componentInstance.closeModal = () => {
