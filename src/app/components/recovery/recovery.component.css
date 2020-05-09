@@ -1,0 +1,93 @@
+.recovery {
+    background: linear-gradient(to bottom right, #66ff66 0%, #66ffcc 100%) no-repeat;
+    box-sizing: border-box !important;
+    min-width: 100vw;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+a {
+    text-decoration: none !important;
+    font-weight: bold;
+    color: rgb(70, 70, 226);
+}
+
+h1,
+h2,
+h3 {
+    color: #f6f6f6;
+}
+
+.myform {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    margin-top: 5vh;
+    padding: 1rem;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    width: 100%;
+    pointer-events: auto;
+    outline: 0;
+    max-width: 500px;
+}
+
+.tx-tfm {
+    text-transform: uppercase;
+}
+
+.mybtn {
+    border-radius: 50px;
+}
+
+.login-or {
+    position: relative;
+    color: #aaa;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.span-or {
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: -2px;
+    margin-left: -25px;
+    background-color: #fff;
+    width: 50px;
+    text-align: center;
+}
+
+.hr-or {
+    height: 1px;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+}
+
+#email {
+    background: url(../../../assets/icons/user-solid.svg) no-repeat scroll 15px 10px;
+    background-size: 5%;
+    padding-left: 25px;
+}
+
+#password {
+    background: url(../../../assets/icons/unlock-alt-solid.svg) no-repeat scroll 15px 10px;
+    background-size: 5%;
+    padding-left: 25px;
+}
+
+input {
+    border-radius: 25px;
+    background-color: #f6f6f6 !important;
+    height: 50px;
+    padding-left: 50px !important;
+}
+
+.icon {
+    margin: 25px;
+    color: rgb(117, 117, 117);
+    min-width: 50px;
+    text-align: center;
+}

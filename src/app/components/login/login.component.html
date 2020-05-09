@@ -1,0 +1,36 @@
+<div class="container login">
+    <div class="row">
+        <div class="col-md-5 mx-auto">
+            <div id="first">
+                <div class="myform form ">
+                    <div class="logo mb-3">
+                        <div class="col-md-12 text-center">
+                            <h1>Eventic</h1>
+                        </div>
+                    </div>
+                    <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
+                        <div class="form-group">
+                            <input #name="ngModel" [(ngModel)]="userAuthService.selectedUser.email" type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Correo electrónico..." required>
+                        </div>
+                        <div class="form-group">
+                            <input #name="ngModel" [(ngModel)]="userAuthService.selectedUser.password" type="password" name="password" id="password" class="form-control" aria-describedby="emailHelp" placeholder="Contraseña..." required>
+                        </div>
+                        <div class="form-group mt-5">
+                            <p class="text-center">¿Has olvidado la contraseña? <a href="/recuperar">¡Recupérala!</a></p>
+                        </div>
+                        <div class="col-md-12 text-center ">
+                            <button type="submit" class=" btn btn-block mybtn btn-dark tx-tfm">Entrar</button>
+                        </div>
+
+                    </form>
+                    <div class="create">
+                        <div class="col-md-12 text-center">
+                            <p class="text-center">¿Te animas a entrar?</p>
+                            <button type="button" class="btn btn-block mybtn shadow"><a href="/registro">Crear una cuenta</a></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

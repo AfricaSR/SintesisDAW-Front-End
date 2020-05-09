@@ -1,0 +1,19 @@
+.datepicker {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+}
+
+label {
+    margin: auto;
+    text-align: center;
+    display: block;
+    font-weight: bold;
+    color: #f6f6f6;
+}
+
+select {
+    max-width: 100px;
+    margin: auto;
+    border-radius: 25px;
+}

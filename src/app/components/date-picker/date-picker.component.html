@@ -1,0 +1,20 @@
+<div class="row datepicker">
+    <div class="col-md-4 form-group">
+        <label for="year">Año</label>
+        <select #yearV class="form-control" id="year" (change)="newDate(yearV.value, monthV.value, dayV.value)" required>
+            <option *ngFor="let y of arrayYear" value="{{y}}">{{y}}</option>
+        </select>
+    </div>
+    <div class="col-md-4 form-group">
+        <label for="month">Mes</label>
+        <select #monthV class="form-control" id="month" (change)="newDate(yearV.value, monthV.value, dayV.value)" required>
+            <option *ngFor="let m of arrayMonth" value="{{m}}" [selected]="m === month">{{m}}</option>
+        </select>
+    </div>
+    <div class="col-md-4 form-group">
+        <label for="day">Día</label>
+        <select #dayV class="form-control" id="day" (change)="newDate(yearV.value, monthV.value, dayV.value)" required>
+            <option *ngFor="let d of arrayDay" value="{{d}}" [selected]="d === day">{{d}}</option>
+        </select>
+    </div>
+</div>

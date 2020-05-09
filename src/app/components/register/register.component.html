@@ -1,0 +1,54 @@
+<div class="container login">
+    <div class="row">
+        <div class="col-md-5 mx-auto">
+            <div id="first">
+                <div class="myform form ">
+                    <div class="logo mb-3">
+                        <div class="col-md-12 text-center">
+                            <h1>Registro</h1>
+                        </div>
+                    </div>
+                    <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm, pass2.value)">
+                        <div class="form-group">
+                            <input #name="ngModel" [(ngModel)]="userAuthService.selectedUser.name" type="text" name="name" class="form-control" id="name" aria-describedby="nameHelp" placeholder="Nombre" required>
+                        </div>
+                        <div class="form-group">
+                            <input #name="ngModel" [(ngModel)]="userAuthService.selectedUser.surname" type="text" name="surname" class="form-control" id="surname" aria-describedby="surnameHelp" placeholder="Apellidos" required>
+                        </div>
+                        <div class="row form-group gender">
+                            <label class="col-md-4 radio">Hombre
+                                <input #name="ngModel" [(ngModel)]="userAuthService.selectedUser.gender" type="radio" name="gender" value="M" required>
+                                <span class="checkmark"></span>
+                              </label>
+
+                            <label class="col-md-4 radio">Mujer
+                                <input #name="ngModel" [(ngModel)]="userAuthService.selectedUser.gender" type="radio" name="gender" value="F" required>
+                                <span class="checkmark"></span>
+                              </label>
+
+                            <label class="col-md-4 radio">Otro
+                                <input #name="ngModel" [(ngModel)]="userAuthService.selectedUser.gender" type="radio" name="gender" value="N" required>
+                                <span class="checkmark"></span>
+                              </label>
+                        </div>
+                        <div class="form-group">
+                            <input #name="ngModel" [(ngModel)]="userAuthService.selectedUser.email" type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Correo electrónico" required>
+                        </div>
+                        <app-date-picker></app-date-picker>
+                        <div class="form-group">
+                            <input #name="ngModel" [(ngModel)]="userAuthService.selectedUser.password" type="password" name="password_1" id="password_1" class="form-control" aria-describedby="emailHelp" placeholder="Contraseña" required>
+                        </div>
+                        <div class="form-group">
+                            <input #pass2 type="password" name="password_2" id="password_2" class="form-control" aria-describedby="emailHelp" placeholder="Repetir contraseña" required>
+                        </div>
+
+                        <div class="col-md-12 text-center ">
+                            <button type="submit" class=" btn btn-block mybtn btn-dark tx-tfm">Regístrame</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
