@@ -35,7 +35,6 @@ export class LoginComponent implements OnInit {
             localStorage.setItem('currentUser', token.token );
             this.router.navigate(['home'])
           }
-
         });
       }else if (res['error']){
         head = { error : res['error'] };

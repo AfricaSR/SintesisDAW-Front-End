@@ -27,7 +27,7 @@ export class UserAuthService {
     return this.http.post('http://localhost:3000/recovery', email);
   }
 
-  getHome(token: String) {
+  getHome(token: any) {
     return this.http.post('http://localhost:3000/home', token);
   }
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
-
+import { UserAuthService } from '../../services/user-auth.service';
 
 import *  as $ from 'jquery';
 
@@ -13,15 +13,12 @@ export class HeaderComponent implements OnInit {
 
   $: any;
 
-  constructor() { }
+  constructor(public userAuthService: UserAuthService, private router: Router) { }
 
   ngOnInit(): void {
-
+    
   }
 
-  goHome(){
-
-  }
 
 
 }
