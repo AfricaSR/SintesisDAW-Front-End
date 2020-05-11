@@ -1,27 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from "@angular/router";
-import { UserAuthService } from '../../../services/user-auth.service';
+import { Wellness } from '../../../models/wellness';
+
 @Component({
   selector: 'app-wellness',
   templateUrl: './wellness.component.html',
   styleUrls: ['./wellness.component.css']
 })
 export class WellnessComponent implements OnInit {
+/*
+  Allergenics: Wellness[];
+  Functionality: Wellness[];*/
 
-  constructor(public userAuthService: UserAuthService, private router: Router) { }
+  constructor() { }
 
   ngOnInit(): void {
-    if (localStorage['currentUser']){
-      this.userAuthService.getHome({token: localStorage['currentUser']}).subscribe(resp => {
-        if (resp['token']){
-          this.router.navigate(['home/bienestar'])
-        }
-      });
-    }else {
-        this.router.navigate([''])
-    }
-    
+
   }
 
-
+  
 }

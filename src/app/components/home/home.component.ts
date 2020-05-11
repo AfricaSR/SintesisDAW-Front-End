@@ -9,18 +9,10 @@ import { UserAuthService } from '../../services/user-auth.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(public userAuthService: UserAuthService, private router: Router) { }
+  constructor() { }
 
   ngOnInit(): void {
-    if (localStorage['currentUser']){
-      this.userAuthService.getHome({token: localStorage['currentUser']}).subscribe(resp => {
-        if (resp['token']){
-          this.router.navigate(['home'])
-        }
-      });
-    }else {
-        this.router.navigate([''])
-    }
+
     
   }
 

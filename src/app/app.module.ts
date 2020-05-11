@@ -31,13 +31,14 @@ import { DashboardComponent } from './components/header/main/dashboard/dashboard
 import { ExchangeComponent } from './components/header/main/exchange/exchange.component';
 import { CreateEventComponent } from './components/header/main/create-event/create-event.component';
 import { NotificationsComponent } from './components/header/main/notifications/notifications.component';
+import { AuthGuard } from './guards/auth.guard'
 
 const routes: Routes = [
 	{ path: '', component: LoginComponent},
 	{ path: 'registro', component: RegisterComponent},
   { path: 'recuperar', component: RecoveryComponent},
-  { path: 'home', component: HomeComponent, children: [
-    { path: '', component: MainComponent, children: [
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuard], canActivateChild: [AuthGuard],children: [
+    { path: '', component: MainComponent, canActivateChild: [AuthGuard], children: [
       { path: '', component: DashboardComponent },
       { path: 'canjear', component: ExchangeComponent },
       { path: 'crear', component: CreateEventComponent },
@@ -89,7 +90,7 @@ const routes: Routes = [
     BrowserAnimationsModule,
     NgbModule
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -30,4 +30,16 @@ export class UserAuthService {
   getHome(token: any) {
     return this.http.post('http://localhost:3000/home', token);
   }
+
+  isAutenticated() {
+    if (localStorage['currentUser']){
+      return true;
+    }else {
+      return false;
+    }
+  }
+
+  getWellnessList() {
+    return this.http.get('http://localhost:3000/wellness/list');
+  }
 }
