@@ -26,18 +26,30 @@ import { WellnessComponent } from './components/header/wellness/wellness.compone
 import { MyEventsComponent } from './components/header/my-events/my-events.component';
 import { MyInvitationsComponent } from './components/header/my-invitations/my-invitations.component';
 import { LogoutComponent } from './components/header/logout/logout.component';
-
+import { MainComponent } from './components/header/main/main.component';
+import { DashboardComponent } from './components/header/main/dashboard/dashboard.component';
+import { ExchangeComponent } from './components/header/main/exchange/exchange.component';
+import { CreateEventComponent } from './components/header/main/create-event/create-event.component';
+import { NotificationsComponent } from './components/header/main/notifications/notifications.component';
 
 const routes: Routes = [
 	{ path: '', component: LoginComponent},
 	{ path: 'registro', component: RegisterComponent},
   { path: 'recuperar', component: RecoveryComponent},
-  { path: 'home', component: HomeComponent },
-  { path: 'perfil', component: MyAccountComponent },
-  { path: 'bienestar', component: WellnessComponent },
-  { path: 'mis-eventos', component: MyEventsComponent },
-  { path: 'mis-invitaciones', component: MyInvitationsComponent },
-  { path: 'logout', component: LogoutComponent },
+  { path: 'home', component: HomeComponent, children: [
+    { path: '', component: MainComponent, children: [
+      { path: '', component: DashboardComponent },
+      { path: 'canjear', component: ExchangeComponent },
+      { path: 'crear', component: CreateEventComponent },
+      { path: 'notificaciones', component: NotificationsComponent },
+    ] },
+    { path: 'perfil', component: MyAccountComponent },
+    { path: 'bienestar', component: WellnessComponent },
+    { path: 'mis-eventos', component: MyEventsComponent },
+    { path: 'mis-invitaciones', component: MyInvitationsComponent },
+    { path: 'logout', component: LogoutComponent },
+  ] },
+
 ]
 
 @NgModule({
@@ -62,7 +74,12 @@ const routes: Routes = [
     WellnessComponent,
     MyEventsComponent,
     MyInvitationsComponent,
-    LogoutComponent
+    LogoutComponent,
+    MainComponent,
+    DashboardComponent,
+    ExchangeComponent,
+    CreateEventComponent,
+    NotificationsComponent
   ],
   imports: [
     BrowserModule,

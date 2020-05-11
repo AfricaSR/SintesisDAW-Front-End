@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from "@angular/router";
+
+
 import *  as $ from 'jquery';
 
 @Component({
@@ -13,6 +16,10 @@ export class HeaderComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+
+  }
+
+  goHome(){
 
   }
 

@@ -29,8 +29,13 @@ export class LoginComponent implements OnInit {
       if (res['msg']){
         head = { msg : res['msg'] };
         token = { token: res['token'] };
-        this.userAuthService.getHome(token).subscribe(res => {
-          this.router.navigate(['home'])
+        
+        this.userAuthService.getHome(token).subscribe(resp => {
+          if (resp['token']){
+            localStorage.setItem('currentUser', token.token );
+            this.router.navigate(['home'])
+          }
+
         });
       }else if (res['error']){
         head = { error : res['error'] };
