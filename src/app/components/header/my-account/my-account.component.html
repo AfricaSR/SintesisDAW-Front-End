@@ -1,1 +1,154 @@
-<p>my-account works!</p>
+<div class="container emp-profile">
+    <div class="row  d-flex justify-content-center">
+        <div class="col-xl-3 col-md-4 col-6">
+            <div class='circle'>
+                <img src="{{currentUser.photo}}" alt="" id="photo-{{currentUser.idUser}}" (load)='fixAspect()'>
+            </div>
+        </div>
+        <div class="col-md-6 col-xl-8">
+            <form #editForm="ngForm" *ngIf="!editPassword">
+                <div class="container profile-work">
+                    <div class="row">
+                        <div *ngIf="!isEditing" class="col-md-6 col-xl-4 col-xl-ml-0 ml-xl-0 profile-head d-flex justify-content-center mt-xl-5 mt-md-4 mt-3 xl-pl-0 form-group">
+                            <h1 id="name-{{currentUser.idUser}}">{{currentUser.name}}&nbsp;</h1>
+                            <h1 id="surname-{{currentUser.idUser}}">{{currentUser.surname}}</h1>
+
+                        </div>
+                        <div class="col-xl-10 col-md-4 d-flex justify-content-end mb-5 mt-xl-5 mt-md-4 mt-3" *ngIf="isEditing">
+                            <input type="text" value="{{currentUser.name}}" class="form-control" [(ngModel)]="currentUser.name" name="name" placeholder="Nombre" />
+                            <input type="text" value="{{currentUser.surname}}" class="form-control" [(ngModel)]="currentUser.surname" name="surname" placeholder="Apellidos" />
+                        </div>
+                    </div>
+                </div>
+                <div class="container profile-work">
+                    <div class="row">
+                        <div class="col">
+                            <p>Email&#09;</p>
+                        </div>
+                        <div class="col form-group">
+                            <p id="email-{{currentUser.idUser}}">{{currentUser.email}}</p>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col">
+                            <p>Género&#09;</p>
+                        </div>
+                        <div class="col form-group">
+                            <p id="gender-{{currentUser.idUser}}" *ngIf="!isEditing">{{currentUser.gender}}</p>
+                            <div class="input-group" *ngIf="isEditing">
+                                <select class="custom-select" value="{{currentUser.gender}}" [(ngModel)]="currentUser.gender" name="gender">
+                                  <option value="Hombre">Hombre</option>
+                                  <option value="Mujer">Mujer</option>
+                                  <option value="Otro">Otro</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <p>Fecha de Nacimiento&#09;</p>
+                        </div>
+                        <div class="col form-group">
+                            <p id="datebirth-{{currentUser.idUser}}" *ngIf="!isEditing">{{currentUser.dateBirth | date: 'dd/MM/yyyy'}}</p>
+                            <app-date-picker *ngIf="isEditing"></app-date-picker>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <form #newPass="ngForm" *ngIf="editPassword">
+                <div class="container profile-work mt-5">
+                    <div class="row">
+                        <div class="col">
+                            <p>Actual Contraseña&#09;</p>
+                        </div>
+                        <div class="col form-group">
+                            <input type="password" #Cp class="form-control" name="cp" />
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col">
+                            <p>Nueva Contraseña</p>
+                        </div>
+                        <div class="col form-group">
+                            <input type="password" #Np class="form-control" name="np" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <p>Repetir nueva Contraseña</p>
+                        </div>
+                        <div class="col form-group">
+                            <input type="password" #RNp class="form-control" name="rnp" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-xl-4 d-flex justify-space-between mt-xl-5 mt-md-4 mt-3">
+                        <button type="button" class="profile-edit-btn btn-success" (click)="updatePassword(Cp.value, Np.value, RNp.value)">Guardar</button>
+                    </div>
+                    <div class="col-md-6 col-xl-4 d-flex justify-space-between mt-xl-5 mt-md-4 mt-3">
+                        <button type="button" class="profile-edit-btn btn-primary" (click)="cancelPassword()">Cancelar</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+        <div class="col-md-6 d-flex justify-content-center mt-xl-5 mt-md-4 mt-3" *ngIf="isEditing">
+            <button type="button" class="profile-edit-btn btn-success" (click)="saveUserData()">Guardar</button>
+        </div>
+        <div class="col-md-6 d-flex justify-content-center mt-xl-5 mt-md-4 mt-3" *ngIf="isEditing">
+            <button type="button" class="profile-edit-btn btn-primary" (click)="cancel()">Cancelar</button>
+        </div>
+        <div class="col-md-4 d-flex justify-content-center mt-xl-5 mt-md-4 mt-3" *ngIf="!isEditing && !editPassword">
+            <button type="button" class="profile-edit-btn btn-secondary" (click)="editUserData()">Editar perfil</button>
+        </div>
+        <div class="col-md-4 d-flex justify-content-center mt-xl-5 mt-md-4 mt-3" *ngIf="!isEditing && !editPassword">
+            <button type="button" class="profile-edit-btn btn-warning" (click)="updatingPass()">Cambiar Contraseña</button>
+        </div>
+        <div class="col-md-4 d-flex justify-content-center mt-xl-5 mt-md-4 mt-3">
+            <button type="button" class="profile-edit-btn btn-danger" (click)="deleteProfile()" *ngIf="!isEditing && !editPassword">Borrar Cuenta</button>
+        </div>
+    </div>
+</div>
+
+<!--
+    <form #editForm="ngForm" (ngSubmit)="onSubmit(editForm, receta._id)">
+
+                    <h6 class="card-title">Preparación</h6>
+
+                    <div class="form-group">
+
+                        <p class="collapse" id="collapseExample{{receta._id}}" aria-expanded="false" *ngIf="editId != receta._id || !edit">
+                            {{receta.preparacion}}</p>
+
+                        <a role="button" class="collapsed" id="col{{receta._id}}" data-toggle="collapse" href="#collapseExample{{receta._id}}" aria-expanded="false" aria-controls="collapseExample" *ngIf="editId != receta._id || !edit"></a>
+
+                        <textarea name="preparacion" class="md-textarea form-control" id="preparacion{{receta._id}}" rows="5" *ngIf="editId == receta._id && edit" [(ngModel)]="editPrep"></textarea>
+
+                    </div>
+
+                    <h6 class="card-title">Ingredientes</h6>
+
+                    <p class="card-text ingdts" id="ingredientes{{receta._id}}" *ngIf="editId != receta._id || !edit">{{receta.ingredientes}}</p>
+
+                    <textarea name="ingredientes" class="md-textarea form-control" id="ingredientesU{{receta._id}}" rows="5" *ngIf="editId == receta._id && edit" [(ngModel)]="editIng"></textarea>
+
+                    <div class="form-control upde" id="updeT{{receta._id}}" *ngIf="editId != receta._id || !edit">
+
+                        <button type="button" class="btn btn-warning" (click)="editR(receta._id)">
+                        <i class="i">&#xf040;</i>Editar</button>
+
+                        <button type="button" class="btn btn-danger" (click)="borrarR(receta._id)">
+                        <i class="i">&#xf1f8;</i>Eliminar</button>
+
+                    </div>
+
+                    <div class="form-control upde" id="updeF{{receta._id}}" *ngIf="editId == receta._id && edit">
+
+                        <input type="submit" class="btn btn-success" value="Guardar" />
+                        <button type="button" class="btn btn-info" (click)="editR(receta._id)">Cancelar</button>
+
+                    </div>
+
+                </form>
+-->

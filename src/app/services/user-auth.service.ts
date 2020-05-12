@@ -39,7 +39,28 @@ export class UserAuthService {
     }
   }
 
-  getWellnessList() {
-    return this.http.get('http://localhost:3000/wellness/list');
+  getUserProfile(token: any){
+    return this.http.post('http://localhost:3000/account', token);
+  }
+
+  putUserProfile(token: any, user: User, dateBirth: any){
+    return this.http.put('http://localhost:3000/updateAccount', {token, user, dateBirth})
+  }
+
+  putUserPassword(token: any, oldPassword: String, password: String){
+    return this.http.put('http://localhost:3000/updatePassword', {token, oldPassword, password})
+  }
+
+  deleteUser(token: any){
+    console.log(token)
+    return this.http.post('http://localhost:3000/deleteUser', token)
+  }
+
+  getWellnessAList() {
+    return this.http.get('http://localhost:3000/wellness/alergenics');
+  }
+
+  getWellnessDList() {
+    return this.http.get('http://localhost:3000/wellness/diversity');
   }
 }

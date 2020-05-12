@@ -11,6 +11,10 @@ export class ModalComponent implements OnInit {
 
   //El componente padre definirá los valores que quiere que aparezcan en el modal
   @Input() closeModal: (any) => void;
+  @Input() dissmissModal: (any) => void;
+  @Input() okModal: (any) => void;
+  ok: Boolean = false;
+  @Input() danger: Boolean = false;
   @Input() titulo: String;
   @Input() mensaje: String;
 
@@ -19,6 +23,10 @@ export class ModalComponent implements OnInit {
   ngOnInit(): void {
 
     
+  }
+
+  setOk(){
+    this.ok = true;
   }
 
 }
