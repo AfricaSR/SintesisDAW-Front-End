@@ -52,8 +52,15 @@ export class UserAuthService {
   }
 
   deleteUser(token: any){
-    console.log(token)
     return this.http.post('http://localhost:3000/deleteUser', token)
+  }
+
+  getUserWellness(token: any) {
+    return this.http.post('http://localhost:3000/userWellness', token)
+  }
+
+  putUserWellness(token: any, wellness: any){
+    return this.http.put('http://localhost:3000/userWellness', {token, wellness})
   }
 
   getWellnessAList() {

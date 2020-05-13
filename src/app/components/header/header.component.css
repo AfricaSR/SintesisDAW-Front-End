@@ -1,0 +1,27 @@
+aside {
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    overflow-x: hidden;
+}
+
+@media only screen and (max-width: 400px) {
+    h1 {
+        font-size: medium !important;
+        margin: auto;
+    }
+    i {
+        max-width: 10px !important;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 950px) {
+    aside,
+    nav,
+    .collapse,
+    .navbar-collapse,
+    ul {
+        flex-direction: row !important;
+    }
+}

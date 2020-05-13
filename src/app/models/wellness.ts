@@ -3,5 +3,6 @@ export class Wellness {
     type: String;
     name: String;
     description: String;
-    route: String;
+    file: String;
+    had: Boolean = false;
 }
