@@ -18,35 +18,18 @@ export class WellnessComponent implements OnInit {
   ngOnInit(): void {
     this.userWellness = new Array<any>();
     this.userAuthService.getUserWellness({token: localStorage['currentUser']}).subscribe(res => {
-      res['wellness'].forEach(e => {
+      res['wellnessList'].forEach(e => {
         this.userWellness.push(e)
       });
     })
     this.Allergenics = new Array<Wellness>();
     this.Functionality = new Array<Wellness>();
+    
     this.userAuthService.getWellnessAList().subscribe(res => {
-      res['wellnessList'].forEach(e => {
-        let el = new Wellness();
-        el = e as Wellness;
-        if (this.userWellness.includes(el.idWellness)){
-          el.had = true;
-        }else {
-          el.had = false;
-        }
-        this.Allergenics.push(el)
-      });
+      this.Allergenics = res['wellnessList'] as Array<Wellness>
     });
     this.userAuthService.getWellnessDList().subscribe(res => {
-      res['wellnessList'].forEach(e => {
-        let el = new Wellness();
-        el = e as Wellness;
-        if (this.userWellness.includes(el.idWellness)){
-          el.had = true;
-        }else {
-          el.had = false;
-        }
-        this.Functionality.push(el)
-      });
+      this.Functionality = res['wellnessList'] as Array<Wellness>
     });
 
 
@@ -67,7 +50,7 @@ export class WellnessComponent implements OnInit {
   }
 
   saveWellness(){
-    console.log(this.userWellness)
+    this.userAuthService.putUserWellness(localStorage['currentUser'], this.userWellness).subscribe();
     this.isEditing = false;
   }
   

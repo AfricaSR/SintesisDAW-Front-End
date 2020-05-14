@@ -59,8 +59,8 @@ export class UserAuthService {
     return this.http.post('http://localhost:3000/userWellness', token)
   }
 
-  putUserWellness(token: any, wellness: any){
-    return this.http.put('http://localhost:3000/userWellness', {token, wellness})
+  putUserWellness(token: any, wellnessList: any){
+    return this.http.put('http://localhost:3000/updateWellness', {token, wellnessList})
   }
 
   getWellnessAList() {
