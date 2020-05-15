@@ -27,8 +27,8 @@
         </div>
         <div class="card-body container">
 
-            <ul class="row">
-                <li class="col-sm col-xs-md-3" *ngFor="let f of Functionality">
+            <ul class="row d-flex justify-content-center">
+                <li class=" col-md-3 col-sm-4 col-5" *ngFor="let f of Functionality">
                     <input type="checkbox" id="f{{f.idWellness}}" [disabled]="!isEditing" [checked]="userWellness.includes(f.idWellness)" (click)="setUW(f.idWellness)" />
                     <label for="f{{f.idWellness}}"><img src="../../..{{f.file}}" /></label>
                     <p class="blockquote text-center">{{f.name}}</p>

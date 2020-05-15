@@ -70,4 +70,16 @@ export class UserAuthService {
   getWellnessDList() {
     return this.http.get('http://localhost:3000/wellness/diversity');
   }
+
+  getEventListCreated(token: any){
+    return this.http.post('http://localhost:3000/eventListCreated', token)
+  }
+
+  postNewEvent(token: any, event: any){
+    return this.http.post('http://localhost:3000/createEvent', {token, event})
+  }
+
+  getEventCreated(token: any, event: any){
+    return this.http.post('http://localhost:3000/eventCreated', {token, event});
+  }
 }

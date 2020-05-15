@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { RecoveryComponent } from './components/recovery/recovery.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { DatePickerComponent } from './components/date-picker/date-picker.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -31,8 +31,11 @@ import { DashboardComponent } from './components/header/main/dashboard/dashboard
 import { ExchangeComponent } from './components/header/main/exchange/exchange.component';
 import { CreateEventComponent } from './components/header/main/create-event/create-event.component';
 import { NotificationsComponent } from './components/header/main/notifications/notifications.component';
-import { AuthGuard } from './guards/auth.guard'
-
+import { AuthGuard } from './guards/auth.guard';
+import { MyEventComponent } from './components/header/my-events/my-event/my-event.component'
+import { CreatedEventComponent } from './components/header/main/create-event/created-event/created-event.component';
+import { InvitationsComponent } from './components/header/main/create-event/createdEvent/invitations/invitations.component';
+import { InvitationComponent } from './components/header/main/create-event/createdEvent/invitations/invitation/invitation.component'
 const routes: Routes = [
 	{ path: '', component: LoginComponent},
 	{ path: 'registro', component: RegisterComponent},
@@ -41,7 +44,8 @@ const routes: Routes = [
     { path: '', component: MainComponent, canActivateChild: [AuthGuard], children: [
       { path: '', component: DashboardComponent },
       { path: 'canjear', component: ExchangeComponent },
-      { path: 'crear', component: CreateEventComponent },
+      { path: 'creaciones', component: CreateEventComponent },
+      { path: 'creaciones/:id', component: CreatedEventComponent },
       { path: 'notificaciones', component: NotificationsComponent },
     ] },
     { path: 'perfil', component: MyAccountComponent },
@@ -80,7 +84,11 @@ const routes: Routes = [
     DashboardComponent,
     ExchangeComponent,
     CreateEventComponent,
-    NotificationsComponent
+    NotificationsComponent,
+    MyEventComponent,
+    CreatedEventComponent,
+    InvitationsComponent,
+    InvitationComponent
   ],
   imports: [
     BrowserModule,
@@ -88,7 +96,8 @@ const routes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(routes),
     BrowserAnimationsModule,
-    NgbModule
+    NgbModule,
+    ReactiveFormsModule
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]

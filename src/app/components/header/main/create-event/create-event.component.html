@@ -1,1 +1,91 @@
-<p>create-event works!</p>
+<!-- Material form contact -->
+<div class="card">
+
+    <h5 class="info-color white-text text-center py-4">
+        <strong>Diseña tus eventos</strong>
+    </h5>
+    <div class="container d-flex justify-content-center" *ngIf="!createEvent">
+        <button type="button" class="btn btn-info" (click)="createNewEvent()">Nuevo Evento</button>
+    </div>
+
+    <div class="card-body px-lg-5 pt-0">
+
+
+        <form class="text-center" style="color: #757575;" *ngIf="createEvent" #eventForm="ngForm" (ngSubmit)="saveNewEvent()">
+
+
+            <div class="md-form mt-3">
+                <input type="text" id="title" class="form-control" [(ngModel)]="currentEvent.title" name="title">
+                <label for="title">Título del evento</label>
+            </div>
+
+
+            <div class="md-form">
+                <textarea id="description" class="form-control md-textarea" rows="3" [(ngModel)]="currentEvent.description" name="description"></textarea>
+                <label for="description">Descripción</label>
+            </div>
+
+            <div class="container">
+                <ngb-datepicker #dp [(ngModel)]="model" (navigate)="date = $event.next" (click)="selectDay(dp, tp)" [ngModelOptions]="{standalone: true}"> </ngb-datepicker>
+                <ngb-timepicker #tp [(ngModel)]="time" [meridian]="true" (click)="selectHour(dp, tp)" [ngModelOptions]="{standalone: true}"></ngb-timepicker>
+            </div>
+
+
+            <div class="md-form mt-3">
+                <input type="text" id="location" class="form-control" [(ngModel)]="currentEvent.location" name="location">
+                <label for="location">Población</label>
+            </div>
+
+            <div class="md-form mt-3">
+                <input type="text" id="street" class="form-control" [(ngModel)]="currentEvent.street" name="street">
+                <label for="street">Calle</label>
+            </div>
+
+            <div class="md-form mt-3">
+                <input type="text" id="postalCode" class="form-control" maxlength="5" [(ngModel)]="currentEvent.postalCode" name="postalCode">
+                <label for="postalCode">Código postal</label>
+            </div>
+
+            <div class="container" *ngIf="createEvent">
+                <button class="btn btn-outline-info btn-rounded btn-block z-depth-0 my-4 waves-effect" type="submit">Guardar</button>
+                <button type="button" class="btn btn-warning" (click)="cancelNewEvent()">Cancelar</button>
+            </div>
+
+        </form>
+        <div class="container" *ngIf="!createEvent && !hasEvents">
+            <h2>Aún no tienes eventos creados... ¿Te animas?</h2>
+        </div>
+        <div class="container" *ngIf="!createEvent && hasEvents">
+            <h2>Tus eventos creados</h2>
+            <table class="table">
+
+                <thead>
+                    <tr>
+                        <th scope="col">Título</th>
+                        <th scope="col">Cuenta atrás</th>
+                        <th scope="col">Invitados</th>
+                        <th scope="col">Asistentes</th>
+                        <th scope="col">Detalles</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr scope="row" *ngFor="let event of eventList">
+                        <td>{{event.title}}</td>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                        <td>
+                            <button type="button" class="btn btn-primary btn-lg active" (click)="displayEventData(event.idEvent)">Administrar</button>
+                            <!--<a role="button" class="btn btn-primary btn-lg active" routerLink="[/{{event.idEvent}}, event]">Administrar</a>-->
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+</div>
