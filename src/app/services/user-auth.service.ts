@@ -82,4 +82,12 @@ export class UserAuthService {
   getEventCreated(token: any, event: any){
     return this.http.post('http://localhost:3000/eventCreated', {token, event});
   }
+
+  getEventInvitation(token: any, idEvent: Number){
+    return this.http.post('http://localhost:3000/getEventInvitations', {token, idEvent});
+  }
+
+  postNewInvitation(token: any, idEvent: Number, invitation: any){
+    return this.http.post('http://localhost:3000/createInvitation', {token, idEvent, invitation});
+  }
 }

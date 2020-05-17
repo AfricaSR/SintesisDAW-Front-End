@@ -1,11 +1,32 @@
-<div class="container">
-    <table class="table">
-        <tbody>
+<div class="btn-group dropright">
+    <button type="button" class="btn btn-secondary dropdown-toggle" [disabled]="isAdding" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  Nueva Invitación
+</button>
+    <div class="dropdown-menu">
+        <p class="dropdown-item" (click)="addInvitation()">Independiente</p>
+        <p class="dropdown-item">A partir de la anterior</p>
+    </div>
+</div>
 
-            <!--
-            <tr scope="row" *ngFor="let i of Invitations.invitations">
-                <td>{{i.name}} {{i.surname}}</td>
-            </tr>-->
-        </tbody>
-    </table>
+<div class="container">
+
+    <div class="container" *ngIf="isAdding">
+        <div [formGroup]="formA">
+            <select #SelecTagA class="form-control" id="SelecTagA" (change)="pushSelectA(SelecTagA.value)" required>
+                <option *ngFor="let a of Allergenics" value="{{a.name}}">{{a.name}}</option>
+            </select>
+        </div>
+        <div [formGroup]="formF">
+            <select #SelecTagF class="form-control" id="SelecTagF" (change)="pushSelectF(SelecTagF.value)" required>
+                <option *ngFor="let f of Functionality" value="{{f.name}}">{{f.name}}</option>
+            </select>
+        </div>
+    </div>
+
+    <app-invitation #newInvitations [form]="form" (formSave)="formSave($event)" [fb]="fb" [(isAdding)]="isAdding" [tagsA]="tagsA" (tagsAChange)="tagsAChange($event)" [tagsF]="tagsF" (tagsFChange)="tagsFChange($event)" [formA]="formA" [formF]="formF" [fbW]="fbW"></app-invitation>
+    <!--
+    <div *ngFor="let inv of invitationsList">
+        <p>{{inv.code}}</p>
+    </div>-->
+
 </div>

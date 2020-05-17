@@ -38,8 +38,12 @@
                     </button>
                 </p>
                 <div class="collapse" id="collapseExample">
-                    <app-invitations [Invitations]="eventInvitations"></app-invitations>
+                    <app-invitations [Invitations]="eventInvitations" (invitationsChange)="getNewInvitations($event)"></app-invitations>
+                    <div *ngFor="let inv of eventInvitations.invitations">
+                        <p>{{inv.code}}</p>
+                    </div>
                 </div>
+
             </div>
 
         </div>

@@ -23,13 +23,13 @@ export class CreatedEventComponent implements OnInit {
       this.event = res['event'] as Event;
 
       this.eventInvitations = res['ei'] as EventInvitations;
-
       
-    })
+    });
 
-    
+  }
 
-    
+  getNewInvitations(ei: EventInvitations){
+      this.eventInvitations = ei as EventInvitations;
   }
 
 }

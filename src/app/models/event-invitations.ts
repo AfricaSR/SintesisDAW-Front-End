@@ -10,7 +10,7 @@ export class I_Response{
 }
 
 export class I_Wellness{
-    idWellness: Number;
+    Wellness: String;
 }
 
 export class Invitation{
@@ -18,6 +18,7 @@ export class Invitation{
     surname: String;
     code: String;
     confirmed: Boolean;
-    Wellness: I_Wellness[];
+    alergenics: I_Wellness[];
+    functionality: I_Wellness[];
     Responses: I_Response[];
 }
