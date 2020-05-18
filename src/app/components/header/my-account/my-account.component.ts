@@ -48,7 +48,6 @@ export class MyAccountComponent implements OnInit {
       }
       
     })
-    console.log(this.currentUser)
   }
 
   fixAspect() {

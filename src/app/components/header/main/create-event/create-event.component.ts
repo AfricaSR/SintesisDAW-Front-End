@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { Router, NavigationExtras } from "@angular/router";
 import { UserAuthService } from '../../../../services/user-auth.service';
 import { Event } from '../../../../models/event';
+import { EventInvitations } from '../../../../models/event-invitations';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalComponent } from '../../../modal/modal.component';
 
@@ -35,6 +36,13 @@ export class CreateEventComponent implements OnInit {
         this.hasEvents = false;
 
       }
+
+      this.eventList.forEach(e => {
+        this.userAuthService.getEventInvitations(localStorage['currentUser'], e.idEvent).subscribe(res => {
+          e['invitados'] = res['invitations'].length;
+          e['asistentes'] = res['invitations'].filter((obj) => obj['confirmed'] === true).length;
+        })
+      })
       
     })
   }
@@ -69,6 +77,7 @@ export class CreateEventComponent implements OnInit {
 
   createNewEvent(){
     this.currentEvent = new Event();
+    this.currentEvent.code = this.makeRandom();
     let d = new Date();
     this.currentEvent.date = {
       year: d.getFullYear(),
@@ -107,6 +116,16 @@ export class CreateEventComponent implements OnInit {
   cancelNewEvent() {
     this.currentEvent = null;
     this.createEvent = false;
+  }
+
+  makeRandom() {
+    let possible = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+    let lengthOfCode = 6;
+    let text = "";
+    for (let i = 0; i < lengthOfCode; i++) {
+      text += possible.charAt(Math.floor(Math.random() * possible.length));
+    }
+      return text;
   }
 
 }

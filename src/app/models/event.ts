@@ -6,6 +6,7 @@ export class Event {
     host: Number;
     title: String;
     description: String;
+    code: String;
     date: any;
     location: String;
     street: String;

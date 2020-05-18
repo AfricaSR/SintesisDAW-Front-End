@@ -15,11 +15,15 @@ export class InvitationsComponent implements OnInit {
 
   @ViewChild('newInvitations') newInvitation: ElementRef;
   @Input() Invitations: EventInvitations;
+  @Input() editInvitation: Boolean;
+  @Input() codeInv: String;
+  @Output() editInvitationChange = new EventEmitter<Boolean>();
   @Output() invitationsChange = new EventEmitter<EventInvitations>();
   invitationsList: Invitation[];
   form: FormGroup;
   auxSur: String = '';
   isAdding: Boolean = false;
+  auxHasValue: Boolean = false;
 
   //*************** */
     tagsA: string[] = [];
@@ -56,9 +60,15 @@ export class InvitationsComponent implements OnInit {
     
     this.userAuthService.getWellnessAList().subscribe(res => {
       this.Allergenics = res['wellnessList'] as Array<Wellness>
+      let head = new Wellness();
+      head.name = "Añadir Alérgeno"
+      this.Allergenics.unshift(head);
     });
     this.userAuthService.getWellnessDList().subscribe(res => {
       this.Functionality = res['wellnessList'] as Array<Wellness>
+      let head = new Wellness();
+      head.name = "Añadir Diversidad"
+      this.Functionality.unshift(head);
     });
 
   }
@@ -72,37 +82,103 @@ export class InvitationsComponent implements OnInit {
   }
 
   formSave(form: FormGroup){
-    form.controls[0].value['alergenics'] = this.tagsA;
-    form.controls[0].value['functionality'] = this.tagsF;
-    this.userAuthService.postNewInvitation(
-      localStorage['currentUser'], 
-      this.Invitations.idEvent, 
-      form.controls[0].value).subscribe(res => {
-        this.Invitations = res as EventInvitations;
-        this.invitationsChange.emit(this.Invitations);
-      })
-      
 
-    //console.log(form.controls[0].value)
-    this.form = this.fb.group({
-      invitations: this.fb.array([]),
-    });
-    this.tagsA = [];
-    this.tagsF = [];
-    this.isAdding = false;
+    if (this.editInvitation){
+
+      form.controls[0].value['alergenics'] = this.tagsA;
+      form.controls[0].value['functionality'] = this.tagsF;
+      this.auxSur = form.controls[0].value['surname'];
+      this.auxHasValue = true;
+      this.userAuthService.putEventInvitation(
+        localStorage['currentUser'], 
+        this.Invitations.idEvent, 
+        form.controls[0].value).subscribe(res => {
+          this.Invitations = res as EventInvitations;
+          this.invitationsChange.emit(this.Invitations);
+          this.editInvitationChange.emit(false)
+        })
+        
+  
+      //console.log(form.controls[0].value)
+      this.form = this.fb.group({
+        invitations: this.fb.array([]),
+      });
+      this.tagsA = [];
+      this.tagsF = [];
+      this.isAdding = false;
+
+    }else {
+
+      form.controls[0].value['code'] = this.makeRandom();
+      form.controls[0].value['alergenics'] = this.tagsA;
+      form.controls[0].value['functionality'] = this.tagsF;
+      this.auxSur = form.controls[0].value['surname'];
+      this.auxHasValue = true;
+      this.userAuthService.postNewInvitation(
+        localStorage['currentUser'], 
+        this.Invitations.idEvent, 
+        form.controls[0].value).subscribe(res => {
+          this.Invitations = res as EventInvitations;
+          this.invitationsChange.emit(this.Invitations);
+        })
+        
+  
+      //console.log(form.controls[0].value)
+      this.form = this.fb.group({
+        invitations: this.fb.array([]),
+      });
+      this.tagsA = [];
+      this.tagsF = [];
+      this.isAdding = false;
+    }
   }
 
   addInvitation() {
     this.isAdding = true;
     const creds = this.form.controls.invitations as FormArray;
     creds.push(this.fb.group({
-      code: this.makeRandom(),
+      code: new FormControl(''),
       name: new FormControl(''),
       surname: new FormControl(''),
       confirmed: new FormControl(false),
+      member: new FormControl(false),
       alergenics: new FormControl([]),
       functionality: new FormControl([]),
       responses: new FormControl('')
+    }));
+
+  }
+
+  addWithSurname() {
+    this.isAdding = true;
+    const creds = this.form.controls.invitations as FormArray;
+    creds.push(this.fb.group({
+      code: new FormControl(''),
+      name: new FormControl(''),
+      surname: new FormControl(this.auxSur),
+      confirmed: new FormControl(false),
+      member: new FormControl(false),
+      alergenics: new FormControl([]),
+      functionality: new FormControl([]),
+      responses: new FormControl('')
+    }));
+  }
+
+  editInvitationData(_id: String, code: String, name: String, surname: String, confirmed: Boolean, member: Boolean, alergenics: string[], functionality: string[], responses: any) {
+    this.isAdding = true;
+    this.tagsAChange(alergenics)
+    this.tagsFChange(functionality)
+    const creds = this.form.controls.invitations as FormArray;
+    creds.push(this.fb.group({
+      _id: new FormControl(_id),
+      code: new FormControl(code),
+      name: new FormControl(name),
+      surname: new FormControl(surname),
+      confirmed: new FormControl(confirmed),
+      member: new FormControl(member),
+      alergenics: new FormControl(alergenics),
+      functionality: new FormControl(functionality),
+      responses: new FormControl(responses)
     }));
 
   }

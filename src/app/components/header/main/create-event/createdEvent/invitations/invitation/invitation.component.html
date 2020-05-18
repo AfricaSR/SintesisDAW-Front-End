@@ -1,65 +1,53 @@
 <form [formGroup]="form">
-
     <div formArrayName="invitations" *ngFor="let i = index; let creds of form.get('invitations')['controls'] ">
-        <ng-container [formGroupName]="i">
-            <input placeholder="Code" formControlName="code">
-            <input placeholder="Nombre" formControlName="name">
-            <input placeholder="Apellidos" formControlName="surname">
-            <input placeholder="Confirmado" formControlName="confirmed">
-            <div class="editor-tag" (click)="focusTagInputA()">
-                <span class="tag-itemA" *ngFor="let tagA of tagsA">
-                      {{tagA}}
-                      <span class="remove-tag" (click)="removeTagA(tagA)">×</span>
-                </span>
-                <input placeholder="Alérjenos" #tagInputA class="input-tagA" formControlName="alergenics">
+        <ng-container [formGroupName]="i" class="table-responsive-sm">
+            <table class="table table-striped w-auto">
+                <tbody>
+                    <tr class="row">
+                        <td><input placeholder="Nombre" class="editor-tag" formControlName="name"></td>
+                        <td><input placeholder="Apellidos" class="editor-tag" formControlName="surname"></td>
 
-            </div>
+                        <td> <select class="editor-tag" formControlName="confirmed">
+                            <option disabled="disabled">Confirmado</option>
+                            <option value="true">Sí</option>
+                            <option value="false">No</option>
+                        </select></td>
+                    </tr>
+                    <tr class="row">
+                        <td>
+                            <div class="editor-tag">
+                                <span class="tag-itemA" *ngFor="let tagA of tagsA">
+                                  {{tagA}}
+                                  <span class="remove-tag" (click)="removeTagA(tagA)">×</span>
+                                </span>
 
-            <div class="editor-tag" (click)="focusTagInputF()">
-                <span class="tag-itemF" *ngFor="let tagF of tagsF">
-                      {{tagF}}
-                      <span class="remove-tag" (click)="removeTagF(tagF)">×</span>
-                </span>
-                <input placeholder="Diversidad" #tagInputF class="input-tagF" formControlName="functionality">
 
-            </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="editor-tag">
+                                <span class="tag-itemF" *ngFor="let tagF of tagsF">
+                                  {{tagF}}
+                                  <span class="remove-tag" (click)="removeTagF(tagF)">×</span>
+                                </span>
 
-            <input placeholder="Respuestas" formControlName="responses">
+                            </div>
+                        </td>
+                        <td><input placeholder="Respuestas" class="editor-tag" formControlName="responses"></td>
+                        <td *ngIf="editInvitation">
+                            <button type="button" class="btn btn-success" (click)="editItem()"><i class="fa fa-save fa-fw"></i></button>
+                            <button type="button" class="btn btn-secondary" (click)="removeItem()"><i class="fa fa-times fa-fw"></i></button>
+                        </td>
+                        <td *ngIf="!editInvitation">
+                            <button type="button" class="btn btn-success" (click)="saveItem()"><i class="fa fa-save fa-fw"></i></button>
+                            <button type="button" class="btn btn-secondary" (click)="removeItem()"><i class="fa fa-trash fa-fw"></i></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </ng-container>
-        <button type="button" class="btn btn-success" (click)="saveItem()"><i class="fa fa-save fa-fw"></i></button>
-        <button type="button" class="btn btn-secondary" (click)="removeItem()"><i class="fa fa-trash fa-fw"></i></button>
 
     </div>
 
 
 </form>
-
-<!--
-
-
-            <div [formGroup]="formA">
-                <div class="editor-tag" (click)="focusTagInputA()">
-                    <span class="tag-itemA" *ngFor="let tagA of tagsA">
-                          {{tagA}}
-                          <span class="remove-tag" (click)="removeTagA(tagA)">×</span>
-                    </span>
-                    <input placeholder="Alérgenos" #tagInputA type="text" class="input-tagA" (keyup)="onKeyUpA($event)" formControlName="tagA">
-
-                </div>
-                <select #SelecTagA class="form-control" id="SelecTagA" (change)="pushSelectA(SelecTagA.value)" required>
-                    <option *ngFor="let a of Allergenics" value="{{a.name}}">{{a.name}}</option>
-                </select>
-            </div>
-            <div [formGroup]="formF">
-                <div class="editor-tag" (click)="focusTagInputF()">
-                    <span class="tag-itemF" *ngFor="let tagF of tagsF">
-                          {{tagF}}
-                          <span class="remove-tag" (click)="removeTagF(tagF)">×</span>
-                    </span>
-                    <input placeholder="Diversidad" #tagInputF type="text" class="input-tagF" (keyup)="onKeyUpF($event)" formControlName="tagF">
-
-                </div>
-                <select #SelecTagF class="form-control" id="SelecTagF" (change)="pushSelectF(SelecTagF.value)" required>
-                    <option *ngFor="let f of Functionality" value="{{f.name}}">{{f.name}}</option>
-                </select>
-            </div>-->

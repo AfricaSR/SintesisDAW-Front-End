@@ -5,6 +5,7 @@
                 <div class="text-center">
                     <p>{{event.date | date: 'dd/MM/yyyy hh:mm'}} - {{event.street}} ({{event.postalCode}}) - {{event.location}} </p>
                     <h3>{{event.title}}</h3>
+                    <h4>{{event.code}}</h4>
                 </div>
             </div>
         </div>
@@ -27,21 +28,55 @@
 </section>
 <section>
     <div class="container">
+        <h5>Descripción</h5>
+        <p>{{event.description}}</p>
         <div class="row justify-content-center">
-            <div class="col-lg-10 col-md-12 col-xs-12">
 
-                <h5>Descripción</h5>
-                <p>{{event.description}}</p>
-                <p>
-                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                      Ver lista de Invitaciones
-                    </button>
-                </p>
+            <button class="btn btn-primary mt-3 mb-3" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Ver lista de Invitaciones</button>
+            <div class="col-lg-12 col-md-12 col-xs-12">
+
                 <div class="collapse" id="collapseExample">
-                    <app-invitations [Invitations]="eventInvitations" (invitationsChange)="getNewInvitations($event)"></app-invitations>
-                    <div *ngFor="let inv of eventInvitations.invitations">
-                        <p>{{inv.code}}</p>
-                    </div>
+                    <app-invitations #appInvitations [Invitations]="eventInvitations" (invitationsChange)="getNewInvitations($event)" [editInvitation]="editInvitation" (editInvitationChange)="editInvitationChange($event)"></app-invitations>
+
+                    <table class="table ">
+                        <thead>
+                            <tr class="row d-flex justify-space-between">
+                                <th class="col">Código</th>
+                                <th class="col">Nombre</th>
+                                <th class="col">Apellidos</th>
+                                <th class="col">Confirmado</th>
+                                <th class="col">Miembro</th>
+                                <th class="col">Alergias</th>
+                                <th class="col">Movilidad</th>
+                                <th class="col">Detalles</th>
+                                <th class="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="row d-flex justify-space-between" *ngFor="let inv of eventInvitations.invitations">
+                                <td class="col">{{inv.code}}</td>
+                                <td class="col">{{inv.name}}</td>
+                                <td class="col">{{inv.surname}}</td>
+                                <td class="col" [ngSwitch]="inv.confirmed">
+                                    <p *ngSwitchCase="true">Sí</p>
+                                    <p *ngSwitchCase="false">No</p>
+                                </td>
+                                <td class="col" [ngSwitch]="inv.member">
+                                    <p *ngSwitchCase="true">Sí</p>
+                                    <p *ngSwitchCase="false">No</p>
+                                </td>
+                                <td class="col">{{inv.alergenics}}</td>
+                                <td class="col">{{inv.functionality}}</td>
+                                <td class="col">{{inv.Responses}}</td>
+
+                                <td class="col d-flex justify-space-between">
+                                    <button type="button" class="btn btn-warning mr-3" [disabled]="(inv.member == true)" (click)="editItem(inv.code, appInvitations)"><i class="fa fa-pencil fa-fw"></i></button>
+                                    <button type="button" class="btn btn-secondary" (click)="removeItem(inv.code)"><i class="fa fa-trash fa-fw"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
                 </div>
 
             </div>

@@ -1,0 +1,13 @@
+#SelecTagA {
+    background-color: rgb(163, 219, 163);
+    border-radius: 25px;
+}
+
+#SelecTagF {
+    background-color: rgb(163, 183, 219);
+    border-radius: 25px;
+}
+
+.dropdown-menu>.dropdown-item:hover {
+    background-color: lightblue !important;
+}

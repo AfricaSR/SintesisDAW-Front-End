@@ -83,11 +83,31 @@ export class UserAuthService {
     return this.http.post('http://localhost:3000/eventCreated', {token, event});
   }
 
-  getEventInvitation(token: any, idEvent: Number){
+  getEventNonCreated(token: any, event: any){
+    return this.http.post('http://localhost:3000/eventNonCreated', {token, event});
+  }
+
+  exchangeInvitation(token: any, event: Number, role: String, confirmationCode: String){
+    return this.http.post('http://localhost:3000/createAttend', {token, event, role, confirmationCode});
+  }
+
+  getEventInvitations(token: any, idEvent: Number){
     return this.http.post('http://localhost:3000/getEventInvitations', {token, idEvent});
   }
 
   postNewInvitation(token: any, idEvent: Number, invitation: any){
     return this.http.post('http://localhost:3000/createInvitation', {token, idEvent, invitation});
+  }
+
+  deleteEventInvitation(token: any, idEvent: Number, code: String){
+    return this.http.post('http://localhost:3000/deleteEventInvitation', {token, idEvent, code});
+  }
+
+  putEventInvitation(token: any, idEvent: Number, invitation: any) {
+    return this.http.post('http://localhost:3000/editEventInvitation', {token, idEvent, invitation});
+  }
+
+  getEventInvitation(token: any, code: String, invitation: String) {
+    return this.http.post('http://localhost:3000/getEventInvitation', {token, code, invitation});
   }
 }

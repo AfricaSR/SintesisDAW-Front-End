@@ -62,20 +62,18 @@
                 <thead>
                     <tr>
                         <th scope="col">Título</th>
-                        <th scope="col">Cuenta atrás</th>
+                        <th scope="col">Código</th>
                         <th scope="col">Invitados</th>
-                        <th scope="col">Asistentes</th>
+                        <th scope="col">Confirmados</th>
                         <th scope="col">Detalles</th>
-                        <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr scope="row" *ngFor="let event of eventList">
                         <td>{{event.title}}</td>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
+                        <td>{{event.code}}</td>
+                        <td>{{event.invitados}}</td>
+                        <td>{{event.asistentes}}</td>
                         <td>
                             <button type="button" class="btn btn-primary btn-lg active" (click)="displayEventData(event.idEvent)">Administrar</button>
                             <!--<a role="button" class="btn btn-primary btn-lg active" routerLink="[/{{event.idEvent}}, event]">Administrar</a>-->

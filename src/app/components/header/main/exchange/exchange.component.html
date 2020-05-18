@@ -1,1 +1,33 @@
-<p>exchange works!</p>
+<div class="wrapper fadeInDown" *ngIf="!foudInvitation">
+    <div id="formContent">
+
+
+        <div class="fadeIn first">
+            <i class="fa fa-envelope fa-5x"></i>
+        </div>
+
+        <form #userExchange="ngForm" (ngSubmit)="onClickSubmit(userExchange.value)">
+            <input type="text" ngModel name="evento" class="fadeIn second" placeholder="Código de Evento">
+            <input type="text" ngModel name="invitacion" class="fadeIn third" placeholder="Código de Invitación">
+            <input type="submit" class="fadeIn fourth" value="Log In">
+        </form>
+
+
+    </div>
+</div>
+
+<div class="wrapper fadeInDown" *ngIf="foudInvitation">
+    <div id="formContent">
+
+
+        <form #userVerify="ngForm" (ngSubmit)="onClickSubmitVerify(userVerify.value)">
+            <h3>{{currentUser.name}} {{currentUser.surname}}</h3>
+            <h3>{{event.title}}</h3>
+            <p>{{event.description}}</p>
+            <p>{{event.date | date: 'dd/MM/yyyy hh:mm'}} - {{event.street}} ({{event.postalCode}}) - {{event.location}} </p>
+            <input type="submit" class="fadeIn fourth" value="Confirmar">
+        </form>
+
+
+    </div>
+</div>

@@ -1,32 +1,32 @@
-<div class="btn-group dropright">
+<div class="btn-group dropleft mt-3 mb-3 d-flex float-right">
     <button type="button" class="btn btn-secondary dropdown-toggle" [disabled]="isAdding" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
   Nueva Invitación
 </button>
     <div class="dropdown-menu">
-        <p class="dropdown-item" (click)="addInvitation()">Independiente</p>
-        <p class="dropdown-item">A partir de la anterior</p>
+        <button type="menu" class="dropdown-item" (click)="addInvitation()">Independiente</button>
+        <button type="menu" class="dropdown-item" (click)="addWithSurname()" [disabled]="!auxHasValue">A partir de la anterior</button>
     </div>
 </div>
 
 <div class="container">
 
-    <div class="container" *ngIf="isAdding">
-        <div [formGroup]="formA">
+    <app-invitation #newInvitations [(editInvitation)]="editInvitation" [form]="form" (formSave)="formSave($event)" [fb]="fb" [(isAdding)]="isAdding" [tagsA]="tagsA" (tagsAChange)="tagsAChange($event)" [tagsF]="tagsF" (tagsFChange)="tagsFChange($event)" [formA]="formA"
+        [formF]="formF" [fbW]="fbW"></app-invitation>
+
+    <div class="row container d-flex justify-space-between" *ngIf="isAdding">
+        <div class="col" [formGroup]="formA">
             <select #SelecTagA class="form-control" id="SelecTagA" (change)="pushSelectA(SelecTagA.value)" required>
-                <option *ngFor="let a of Allergenics" value="{{a.name}}">{{a.name}}</option>
+                <option *ngFor="let a of Allergenics" value="{{a.name}}" [disabled]="(a.name == 'Añadir Alérgeno')">{{a.name}}</option>
             </select>
         </div>
-        <div [formGroup]="formF">
+        <div class="col" [formGroup]="formF">
             <select #SelecTagF class="form-control" id="SelecTagF" (change)="pushSelectF(SelecTagF.value)" required>
-                <option *ngFor="let f of Functionality" value="{{f.name}}">{{f.name}}</option>
+                <option *ngFor="let f of Functionality" value="{{f.name}}" [disabled]="(f.name == 'Añadir Diversidad')">{{f.name}}</option>
             </select>
         </div>
     </div>
 
-    <app-invitation #newInvitations [form]="form" (formSave)="formSave($event)" [fb]="fb" [(isAdding)]="isAdding" [tagsA]="tagsA" (tagsAChange)="tagsAChange($event)" [tagsF]="tagsF" (tagsFChange)="tagsFChange($event)" [formA]="formA" [formF]="formF" [fbW]="fbW"></app-invitation>
-    <!--
-    <div *ngFor="let inv of invitationsList">
-        <p>{{inv.code}}</p>
-    </div>-->
+
+
 
 </div>
