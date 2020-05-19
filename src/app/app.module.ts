@@ -35,7 +35,11 @@ import { AuthGuard } from './guards/auth.guard';
 import { MyEventComponent } from './components/header/my-events/my-event/my-event.component'
 import { CreatedEventComponent } from './components/header/main/create-event/created-event/created-event.component';
 import { InvitationsComponent } from './components/header/main/create-event/createdEvent/invitations/invitations.component';
-import { InvitationComponent } from './components/header/main/create-event/createdEvent/invitations/invitation/invitation.component'
+import { InvitationComponent } from './components/header/main/create-event/createdEvent/invitations/invitation/invitation.component';
+import { QuestionsComponent } from './components/header/main/create-event/createdEvent/questions/questions.component';
+import { QuestionComponent } from './components/header/main/create-event/createdEvent/questions/question/question.component';
+import { NewsComponent } from './components/header/main/create-event/createdEvent/news/news.component';
+import { NewComponent } from './components/header/main/create-event/createdEvent/news/new/new.component'
 const routes: Routes = [
 	{ path: '', component: LoginComponent},
 	{ path: 'registro', component: RegisterComponent},
@@ -88,7 +92,11 @@ const routes: Routes = [
     MyEventComponent,
     CreatedEventComponent,
     InvitationsComponent,
-    InvitationComponent
+    InvitationComponent,
+    QuestionsComponent,
+    QuestionComponent,
+    NewsComponent,
+    NewComponent
   ],
   imports: [
     BrowserModule,

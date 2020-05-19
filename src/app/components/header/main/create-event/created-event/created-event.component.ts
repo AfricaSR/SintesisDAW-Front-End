@@ -15,6 +15,11 @@ export class CreatedEventComponent implements OnInit {
     eventInvitations = new EventInvitations;
     editInvitation: Boolean = false;
     codeInv: String = '';
+    makingQuestions: Boolean = false;
+    makingNews: Boolean = false;
+    Questions: any[] = new Array<any>();
+    News: any[] = new Array<any>();
+    numInvitados: Number = 0;
 
     public constructor(private route: ActivatedRoute, private userAuthService: UserAuthService) {}
 
@@ -25,6 +30,21 @@ export class CreatedEventComponent implements OnInit {
       this.event = res['event'] as Event;
 
       this.eventInvitations = res['ei'] as EventInvitations;
+
+      this.numInvitados = this.eventInvitations.invitations.length;
+
+      this.userAuthService.getQuestions(localStorage['currentUser'], res['event']['idEvent']).subscribe(resp => {
+        this.Questions = resp['questions'] as any[];
+        this.Questions.forEach(e => {
+          e['respuestas'] = e['answers'].length
+          e['sin'] = this.eventInvitations.invitations.length - e['respuestas'];
+        })
+      })
+
+      this.userAuthService.getNews(localStorage['currentUser'], res['event']['idEvent']).subscribe(resp => {
+        this.News = resp['News'] as any[];
+        
+      })
       
     });
 
@@ -53,6 +73,24 @@ export class CreatedEventComponent implements OnInit {
       code).subscribe(res => {
         this.eventInvitations = res as EventInvitations;
     })
+  }
+
+  makeQuestion() {
+    this.makingQuestions = true;
+
+  }
+
+  reciveQuestion(q: Boolean) {
+    this.makingQuestions = false;
+  }
+
+  makeNews() {
+    this.makingNews = true;
+
+  }
+
+  reciveNews(n: Boolean) {
+    this.makingNews = false;
   }
 
 

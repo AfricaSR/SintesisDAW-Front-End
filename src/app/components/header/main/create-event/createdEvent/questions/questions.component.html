@@ -1,0 +1,18 @@
+<table class="table">
+    <thead>
+        <tr class="row">
+            <th class="col">Pregunta</th>
+            <th class="col">N# Respuestas</th>
+            <th class="col">Sin Responder</th>
+        </tr>
+    </thead>
+    <tbody *ngFor="let q of Questions">
+        <tr class="row">
+            <td class="col">{{q.body}}</td>
+            <td class="col">{{q.respuestas}}</td>
+            <td class="col">{{q.sin}}</td>
+        </tr>
+    </tbody>
+</table>
+<button type="button" *ngIf="!makingQuestions" class="btn btn-info" (click)="addQuestion()">Hacer una pregunta a mis invitados</button>
+<app-question *ngIf="makingQuestions" [form]="form" [fb]="fb" (formSave)="saveQuestion($event)" [(makingQuestions)]="makingQuestions"></app-question>

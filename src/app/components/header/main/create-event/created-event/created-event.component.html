@@ -12,26 +12,12 @@
     </div>
 </header>
 <section>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-10">
-                <div class=" text-center">
-                    <div data-wow-delay="0.2s">
-                        <div id="clock">
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<section>
-    <div class="container">
+    <div class="container col-lg-10 col-md-12 col-xs-12">
         <h5>Descripción</h5>
         <p>{{event.description}}</p>
         <div class="row justify-content-center">
-
+        </div>
+        <div>
             <button class="btn btn-primary mt-3 mb-3" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Ver lista de Invitaciones</button>
             <div class="col-lg-12 col-md-12 col-xs-12">
 
@@ -81,6 +67,38 @@
 
             </div>
 
+        </div>
+    </div>
+</section>
+<section>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-10">
+                <div class=" text-center">
+                    <div data-wow-delay="0.2s">
+                        <div id="news">
+                            <app-news [idEvent]="event.idEvent" [News]="News" [makingNews]="makingNews" (makingNewsChange)="reciveNews($event)"></app-news>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-10">
+                <div class=" text-center">
+                    <div data-wow-delay="0.2s">
+                        <div id="questions">
+
+                            <app-questions [numInvitados]="numInvitados" [idEvent]="event.idEvent" [Questions]="Questions" [makingQuestions]="makingQuestions" (makingQuestionsChange)="reciveQuestion($event)"></app-questions>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>

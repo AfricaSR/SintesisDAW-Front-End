@@ -110,4 +110,28 @@ export class UserAuthService {
   getEventInvitation(token: any, code: String, invitation: String) {
     return this.http.post('http://localhost:3000/getEventInvitation', {token, code, invitation});
   }
+
+  postQuestion(token: any, event: Number, question: String) {
+    return this.http.post('http://localhost:3000/makeQuestion', {token, event, question})
+  }
+
+  getQuestions(token: any, event: Number) {
+    return this.http.post('http://localhost:3000/getQuestions', {token, event})
+  }
+
+  postNews(token: any, event: Number, title: String, body: String) {
+    return this.http.post('http://localhost:3000/makeNews', {token, event, title, body})
+  }
+
+  getNews(token: any, event: Number) {
+    return this.http.post('http://localhost:3000/getNews', {token, event})
+  }
+
+  getDashboardNews(token: any) {
+    return this.http.post('http://localhost:3000/getEventsNews', token)
+  }
+
+  getDashboardTimeline(token: any) {
+    return this.http.post('http://localhost:3000/getEventsTimeline', token)
+  }
 }

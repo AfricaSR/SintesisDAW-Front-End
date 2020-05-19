@@ -1,0 +1,21 @@
+.container {
+    padding: 0;
+}
+
+.carouser-caption.row {
+    margin: auto !important;
+}
+
+.col {
+    justify-self: center;
+}
+
+.carousel-item {
+    height: 33vh !important;
+    width: 100% !important;
+    background: linear-gradient(to bottom right, #66ff66 0%, #66ffcc 100%) no-repeat;
+}
+
+h5 {
+    color: aliceblue;
+}

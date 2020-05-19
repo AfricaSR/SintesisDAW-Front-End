@@ -1,0 +1,9 @@
+<form [formGroup]="form">
+
+    <div formArrayName="questions" *ngFor="let creds of form.get('questions')['controls']; let i = index">
+        <ng-container [formGroupName]="i">
+            <input placeholder="Pregunta" formControlName="question">
+        </ng-container>
+    </div>
+    <button type="button" class="btn btn-info" (click)="saveItem()">Guardar</button>
+</form>
