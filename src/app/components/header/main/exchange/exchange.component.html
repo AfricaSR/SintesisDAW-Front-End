@@ -9,7 +9,7 @@
         <form #userExchange="ngForm" (ngSubmit)="onClickSubmit(userExchange.value)">
             <input type="text" ngModel name="evento" class="fadeIn second" placeholder="Código de Evento">
             <input type="text" ngModel name="invitacion" class="fadeIn third" placeholder="Código de Invitación">
-            <input type="submit" class="fadeIn fourth" value="Log In">
+            <input type="submit" class="fadeIn fourth" value="Enviar">
         </form>
 
 
@@ -25,6 +25,10 @@
             <h3>{{event.title}}</h3>
             <p>{{event.description}}</p>
             <p>{{event.date | date: 'dd/MM/yyyy hh:mm'}} - {{event.street}} ({{event.postalCode}}) - {{event.location}} </p>
+            <div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" [checked]="confirm" id="customSwitches" (click)="changeDeclaration()">
+                <label class="custom-control-label" for="customSwitches">{{declaration}}</label>
+            </div>
             <input type="submit" class="fadeIn fourth" value="Confirmar">
         </form>
 

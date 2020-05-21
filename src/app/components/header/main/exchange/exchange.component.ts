@@ -20,6 +20,8 @@ export class ExchangeComponent implements OnInit {
   Allergenics: Array<Wellness>;
   Functionality: Array<Wellness>;
   code: String;
+  declaration: String = "Sí, asístiré al evento";
+  confirm: Boolean = true;
 
   constructor(private userAuthService: UserAuthService) { }
 
@@ -77,11 +79,21 @@ export class ExchangeComponent implements OnInit {
       localStorage['currentUser'],
       this.event.idEvent,
       'Asistente',
-      this.code
+      this.code,
+      this.confirm
       ).subscribe(res => {
         console.log(res)
       })
 
+ }
+
+ changeDeclaration() {
+   this.confirm = !this.confirm;
+   if (!this.confirm){
+     this.declaration = "No asistiré"
+   }else {
+    this.declaration = "Sí, asístiré al evento"
+   }
  }
 
 }

@@ -87,8 +87,8 @@ export class UserAuthService {
     return this.http.post('http://localhost:3000/eventNonCreated', {token, event});
   }
 
-  exchangeInvitation(token: any, event: Number, role: String, confirmationCode: String){
-    return this.http.post('http://localhost:3000/createAttend', {token, event, role, confirmationCode});
+  exchangeInvitation(token: any, event: Number, role: String, confirmationCode: String, confirmed: Boolean){
+    return this.http.post('http://localhost:3000/createAttend', {token, event, role, confirmationCode, confirmed});
   }
 
   getEventInvitations(token: any, idEvent: Number){
@@ -133,5 +133,12 @@ export class UserAuthService {
 
   getDashboardTimeline(token: any) {
     return this.http.post('http://localhost:3000/getEventsTimeline', token)
+  }
+
+  putAlFromEvent(token: any) {
+    return this.http.post('http://localhost:3000/updateAlFromEvent', token);
+  }
+  putFuFromEvent(token: any) {
+    return this.http.post('http://localhost:3000/updateFuFromEvent', token);
   }
 }
