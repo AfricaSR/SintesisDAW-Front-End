@@ -141,4 +141,6 @@ export class UserAuthService {
   putFuFromEvent(token: any) {
     return this.http.post('http://localhost:3000/updateFuFromEvent', token);
   }
+
+  
 }

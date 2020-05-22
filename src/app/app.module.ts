@@ -39,7 +39,11 @@ import { InvitationComponent } from './components/header/main/create-event/creat
 import { QuestionsComponent } from './components/header/main/create-event/createdEvent/questions/questions.component';
 import { QuestionComponent } from './components/header/main/create-event/createdEvent/questions/question/question.component';
 import { NewsComponent } from './components/header/main/create-event/createdEvent/news/news.component';
-import { NewComponent } from './components/header/main/create-event/createdEvent/news/new/new.component'
+import { NewComponent } from './components/header/main/create-event/createdEvent/news/new/new.component';
+import { MyInvitationComponent } from './components/header/my-invitations/my-invitation/my-invitation.component';
+import { ChatComponent } from './components/header/my-invitations/myInvitation/chat/chat.component'
+import { SocketService } from './services/socket.service';
+import { AttendsChatComponent } from './components/header/main/create-event/createdEvent/attends-chat/attends-chat.component';
 const routes: Routes = [
 	{ path: '', component: LoginComponent},
 	{ path: 'registro', component: RegisterComponent},
@@ -56,6 +60,7 @@ const routes: Routes = [
     { path: 'bienestar', component: WellnessComponent },
     { path: 'mis-eventos', component: MyEventsComponent },
     { path: 'mis-invitaciones', component: MyInvitationsComponent },
+    { path: 'mis-invitaciones/:id', component: MyInvitationComponent },
     { path: 'logout', component: LogoutComponent },
   ] },
 
@@ -96,7 +101,10 @@ const routes: Routes = [
     QuestionsComponent,
     QuestionComponent,
     NewsComponent,
-    NewComponent
+    NewComponent,
+    MyInvitationComponent,
+    ChatComponent,
+    AttendsChatComponent
   ],
   imports: [
     BrowserModule,
@@ -107,7 +115,7 @@ const routes: Routes = [
     NgbModule,
     ReactiveFormsModule
   ],
-  providers: [AuthGuard],
+  providers: [AuthGuard, SocketService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,1 +1,28 @@
-<p>my-invitations works!</p>
+<!--<app-my-invitation></app-my-invitation>-->
+
+<div class="container">
+    <h3 class="h3">shopping Demo-1 </h3>
+    <div class="row">
+        <div class="col-md-3 col-sm-6" *ngFor="let e of Events">
+            <div class="product-grid">
+                <div class="product-image">
+                    <a>
+                        <img class="pic-1" src="../../../../assets/icons/group.svg">
+                    </a>
+                    <ul class="social">
+                        <li><a data-tip="Acceder al evento" (click)="displayEventData(e.idEvent)"><i class="fa fa-arrow-up fa-2x"></i></a></li>
+
+                    </ul>
+                    <span class="product-new-label">{{e.detail}}</span>
+                </div>
+                <div class="product-content">
+                    <h2 class="title"><a>{{e.title}}</a></h2>
+                    <div class="price">{{e.date | date: 'dd/MM/yy'}}
+                        <span>{{e.date | date: 'HH:mm'}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<hr>
