@@ -28,7 +28,7 @@ export class MyInvitationsComponent implements OnInit {
   }
 
   displayEventData(idEvent){
-    let idAttend = this.Events.find(e => e['idEvent'] = idEvent)['idAttend']
+    let idAttend = this.Events.find(e => e['idEvent'] == idEvent)['idAttend']
     
     this.router.navigate(['home/mis-invitaciones/'+idEvent], { queryParams: { At: idAttend } })
   }

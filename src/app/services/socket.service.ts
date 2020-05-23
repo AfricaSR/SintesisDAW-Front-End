@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import * as io from "socket.io-client";
 import 'rxjs';
 import { Observable } from 'rxjs';
+import { share } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +28,10 @@ export class SocketService {
 
   sendMessage(idEvent: Number, idAttend: Number, message: any) {
     return this.http.post('http://localhost:3000/sendMessage', {idEvent, idAttend, message})
+  }
+
+  getChat(token: any, idEvent: Number, idAttend: Number){
+    return this.http.post('http://localhost:3000/getChat', {token, idEvent, idAttend})
   }
 
   

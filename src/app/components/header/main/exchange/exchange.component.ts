@@ -5,6 +5,8 @@ import { UserAuthService } from '../../../../services/user-auth.service';
 import { FormControl } from '@angular/forms';
 import { User } from '../../../../models/user';
 import { Wellness } from '../../../../models/wellness';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalComponent } from '../../../modal/modal.component';
 
 @Component({
   selector: 'app-exchange',
@@ -23,7 +25,7 @@ export class ExchangeComponent implements OnInit {
   declaration: String = "Sí, asístiré al evento";
   confirm: Boolean = true;
 
-  constructor(private userAuthService: UserAuthService) { }
+  constructor(private userAuthService: UserAuthService, public modal: NgbModal) { }
 
   ngOnInit(): void {
     this.userAuthService
@@ -69,20 +71,43 @@ export class ExchangeComponent implements OnInit {
           this.event = resp['event'] as Event;
           
         });
+      }else {
+        const opts = {
+          windowClass: 'myCustomClass'
+        }
+
+  
+        const resp = this.modal.open(ModalComponent, opts)
+        resp.componentInstance.closeModal = () => {
+          resp.close();
+        }
+        resp.componentInstance.titulo = 'Error';
+        resp.componentInstance.mensaje = 'No existe ningún evento con este código';
       }
     })
  };
 
  onClickSubmitVerify(userVerify: any) {
-
+  this.foudInvitation = false;
     this.userAuthService.exchangeInvitation(
       localStorage['currentUser'],
       this.event.idEvent,
+      this.currentUser.name + ' ' + this.currentUser.surname,
       'Asistente',
       this.code,
       this.confirm
       ).subscribe(res => {
-        console.log(res)
+        const opts = {
+          windowClass: 'myCustomClass'
+        }
+
+  
+        const resp = this.modal.open(ModalComponent, opts)
+        resp.componentInstance.closeModal = () => {
+          resp.close();
+        }
+        resp.componentInstance.titulo = Object.keys(res).toString();
+        resp.componentInstance.mensaje = res[resp.componentInstance.titulo];
       })
 
  }

@@ -87,8 +87,8 @@ export class UserAuthService {
     return this.http.post('http://localhost:3000/eventNonCreated', {token, event});
   }
 
-  exchangeInvitation(token: any, event: Number, role: String, confirmationCode: String, confirmed: Boolean){
-    return this.http.post('http://localhost:3000/createAttend', {token, event, role, confirmationCode, confirmed});
+  exchangeInvitation(token: any, event: Number, nameSurname: String, role: String, confirmationCode: String, confirmed: Boolean){
+    return this.http.post('http://localhost:3000/createAttend', {token, event, nameSurname, role, confirmationCode, confirmed});
   }
 
   getEventInvitations(token: any, idEvent: Number){

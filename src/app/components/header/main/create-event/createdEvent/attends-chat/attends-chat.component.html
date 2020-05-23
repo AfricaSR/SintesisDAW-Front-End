@@ -9,29 +9,19 @@
                     </div>
                 </div>
                 <div class="inbox_chat">
-                    <div class="chat_list active_chat">
+                    <div class="chat_list" *ngFor="let c of chats" (click)="expandChat(c.idAttend)" id="{{c._id}}">
                         <div class="chat_people">
                             <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
                             <div class="chat_ib">
-                                <h5>Sunil Rajput <span class="chat_date">Dec 25</span></h5>
-                                <p>Test, which is a new approach to have all solutions astrology under one roof.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="chat_list">
-                        <div class="chat_people">
-                            <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-                            <div class="chat_ib">
-                                <h5>Sunil Rajput <span class="chat_date">Dec 25</span></h5>
-                                <p>Test, which is a new approach to have all solutions astrology under one roof.</p>
+                                <h5>{{c.nameSurname}} <span class="chat_date">{{c.lastMessage | date: 'MMM d'}}</span></h5>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="mesgs">
-                <div class="msg_history">
-                    <div *ngFor="let msg of messages">
+                <div class="msg_history" #scrollframe>
+                    <div *ngFor="let msg of messages" #item>
                         <div class="incoming_msg" *ngIf="msg.role == 'Invitado'">
 
                             <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
@@ -44,7 +34,7 @@
                             </div>
                         </div>
 
-                        <div class="outgoing_msg" *ngIf="msg.role == 'Anfitrión'">
+                        <div class="outgoing_msg" *ngIf="msg.role == 'Anfitrión'" id="{{msg._id}}">
 
                             <div class="sent_msg">
                                 <p>{{msg.message}}</p>
@@ -54,10 +44,10 @@
                     </div>
                 </div>
 
-                <div class="type_msg">
+                <div class="type_msg" #input>
                     <div class="input_msg_write">
-                        <input type="text" #msg class="write_msg" placeholder="Type a message" />
-                        <button class="msg_send_btn" type="button" (click)="sendMessage(msg.value)"><i class="fa fa-paper-plane-o"></i></button>
+                        <input type="text" #msg class="write_msg" placeholder="Type a message" [disabled]="idAttend == 0" />
+                        <button class="msg_send_btn" type="button" (click)="sendMessage(msg.value)" [disabled]="idAttend == 0"><i class="fa fa-paper-plane-o"></i></button>
                     </div>
                 </div>
             </div>

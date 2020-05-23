@@ -17,7 +17,6 @@ img {
 
 .inbox_msg {
     border: 1px solid #c4c4c4;
-    clear: both;
     overflow: hidden;
 }
 
@@ -99,12 +98,14 @@ img {
 .chat_people {
     overflow: hidden;
     clear: both;
+    cursor: pointer;
 }
 
 .chat_list {
     border-bottom: 1px solid #c4c4c4;
     margin: 0;
     padding: 18px 16px 10px;
+    cursor: pointer;
 }
 
 .inbox_chat {

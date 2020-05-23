@@ -2,7 +2,7 @@ import { Component, OnInit, AfterViewChecked, ElementRef, ViewChild, Input } fro
 import { SocketService } from '../../../../../services/socket.service';
 import { UserAuthService } from '../../../../../services/user-auth.service';
 import { User } from '../../../../../models/user';
-
+import { Observable } from 'rxjs';
 import * as io from "socket.io-client";
 @Component({
   selector: 'app-chat',
@@ -25,15 +25,23 @@ export class ChatComponent implements OnInit {
     this.userAuthService.getUserProfile({ token: localStorage['currentUser'] }).subscribe(res => {
       this.user = res as User;
 
-      this.socket = io('http://localhost:3000', { query: { idEvent: [this.idEvent, this.idAttend] } })
+      this.socket = io('http://localhost:3000', { query: { idEvent: [this.idEvent, +this.idAttend] } })
 
+      
       this.socket.on('messages', msg => {
-        this.messages = msg['messages'];
+        if (msg['idAttend'] == +this.idAttend){
+          this.messages = msg['messages'];
+        }
+        
 
       })
 
-      this.socket.on('sendMessage', msg => {
-        this.messages = msg['messages'];
+      this.socket.on('sendMessage', () => {
+        this.socketService.getChat(localStorage['currentUser'], this.idEvent, +this.idAttend).subscribe(res => {
+          if (res['idAttend'] == +this.idAttend){
+            this.messages = res['messages'];
+          }
+        })
 
       })
 
@@ -48,14 +56,13 @@ export class ChatComponent implements OnInit {
         name: this.user.name,
         surname: this.user.surname,
         idEvent: this.idEvent,
-        idAttend: this.idAttend,
+        idAttend: +this.idAttend,
         message: msg,
         createdAt: new Date()
       }
       this.inputText.nativeElement.value = "";
-      this.inputText
 
-      this.socketService.sendMessage(this.idEvent, this.idAttend, message).subscribe()
+      this.socketService.sendMessage(this.idEvent, +this.idAttend, message).subscribe()
     }
 
   }
