@@ -76,6 +76,8 @@
                         <td>{{event.asistentes}}</td>
                         <td>
                             <button type="button" class="btn btn-primary btn-lg active" (click)="displayEventData(event.idEvent)">Administrar</button>
+                            <button type="button" class="btn btn-danger btn-lg active" (click)="deleteEvent(event.idEvent)">Borrar</button>
+
                             <!--<a role="button" class="btn btn-primary btn-lg active" routerLink="[/{{event.idEvent}}, event]">Administrar</a>-->
                         </td>
                     </tr>

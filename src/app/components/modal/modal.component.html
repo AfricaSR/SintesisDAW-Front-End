@@ -1,11 +1,15 @@
-<div class="modal-header bg-light">
-    <h2 class="modal-title">{{titulo}}</h2>
-</div>
-<div class="modal-body">
-    <h4>{{mensaje}}</h4>
-</div>
-<div class="modal-footer">
-    <button (click)="closeModal(false)" class="btn btn-info" *ngIf="!danger">Cerrar</button>
-    <button type="button" class="btn btn-outline-secondary" *ngIf="danger" (click)="dissmissModal('cancel click')">Cancel</button>
-    <button type="button" class="btn btn-danger" *ngIf="danger" (click)="okModal('Ok click'); setOk();">Ok</button>
+<div class="modal wrapper fadeInDown">
+    <div id="formContent">
+        <div class="modal-header bg-light">
+            <h2 class="modal-title">{{titulo}}</h2>
+        </div>
+        <div class="modal-body">
+            <h4>{{mensaje}}</h4>
+        </div>
+        <div class="modal-footer">
+            <button (click)="closeModal(false)" class="btn btn-info" *ngIf="!danger">Cerrar</button>
+            <button type="button" class="btn btn-outline-secondary" *ngIf="danger" (click)="dissmissModal('cancel click')">Cancel</button>
+            <button type="button" class="btn btn-danger" *ngIf="danger" (click)="okModal('Ok click'); setOk();">Ok</button>
+        </div>
+    </div>
 </div>

@@ -79,6 +79,10 @@ export class UserAuthService {
     return this.http.post('http://localhost:3000/createEvent', {token, event})
   }
 
+  deleteEvent(token: any, idEvent: Number) {
+    return this.http.post('http://localhost:3000/deleteEvent', {token, idEvent})
+  }
+
   getEventCreated(token: any, event: any){
     return this.http.post('http://localhost:3000/eventCreated', {token, event});
   }

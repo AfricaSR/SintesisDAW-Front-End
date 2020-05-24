@@ -128,4 +128,46 @@ export class CreateEventComponent implements OnInit {
       return text;
   }
 
+  deleteEvent(idEvent: Number) {
+    const opts = {
+      windowClass: 'myCustomClass'
+    }
+    let respuesta = {'Atención': 'Estás a punto de borrar tu Evento. No podrás recuperar tus datos una vez hayas dado este paso. ¿Deseas continuar?'}
+    
+
+    const resp = this.modal.open(ModalComponent, opts)
+    resp.componentInstance.danger = true;
+    resp.componentInstance.dissmissModal = () => {
+      resp.dismiss();
+    }
+    resp.componentInstance.okModal = () => {
+      resp.close();
+      if (resp.result['__zone_symbol__state']==true){
+        
+        this.userAuthService.deleteEvent(localStorage['currentUser'], idEvent).subscribe(res => {
+          const opts = {
+            windowClass: 'myCustomClass'
+          }
+    
+          let response;
+    
+          if (res['msg']){
+            response = { 'Felicitaciones' : res['msg'] };
+          }else if (res['error']){
+            response = { 'Ha ocurrido un error' : res['error'] };
+          }
+          const resp = this.modal.open(ModalComponent, opts)
+          resp.componentInstance.closeModal = () => {
+            resp.close();
+          }
+          resp.componentInstance.titulo = Object.keys(response).toString();
+          resp.componentInstance.mensaje = response[resp.componentInstance.titulo];
+        })
+ 
+      }
+    }
+    resp.componentInstance.titulo = Object.keys(respuesta).toString();
+    resp.componentInstance.mensaje = respuesta[resp.componentInstance.titulo];
+  }
+
 }

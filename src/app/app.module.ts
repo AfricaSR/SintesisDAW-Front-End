@@ -23,7 +23,6 @@ import { EventoBodyComponent } from './components/eventos/evento/evento-body/eve
 import { EventoAccessComponent } from './components/eventos/evento/evento-access/evento-access.component';
 import { MyAccountComponent } from './components/header/my-account/my-account.component';
 import { WellnessComponent } from './components/header/wellness/wellness.component';
-import { MyEventsComponent } from './components/header/my-events/my-events.component';
 import { MyInvitationsComponent } from './components/header/my-invitations/my-invitations.component';
 import { LogoutComponent } from './components/header/logout/logout.component';
 import { MainComponent } from './components/header/main/main.component';
@@ -32,7 +31,6 @@ import { ExchangeComponent } from './components/header/main/exchange/exchange.co
 import { CreateEventComponent } from './components/header/main/create-event/create-event.component';
 import { NotificationsComponent } from './components/header/main/notifications/notifications.component';
 import { AuthGuard } from './guards/auth.guard';
-import { MyEventComponent } from './components/header/my-events/my-event/my-event.component'
 import { CreatedEventComponent } from './components/header/main/create-event/created-event/created-event.component';
 import { InvitationsComponent } from './components/header/main/create-event/createdEvent/invitations/invitations.component';
 import { InvitationComponent } from './components/header/main/create-event/createdEvent/invitations/invitation/invitation.component';
@@ -58,7 +56,6 @@ const routes: Routes = [
     ] },
     { path: 'perfil', component: MyAccountComponent },
     { path: 'bienestar', component: WellnessComponent },
-    { path: 'mis-eventos', component: MyEventsComponent },
     { path: 'mis-invitaciones', component: MyInvitationsComponent },
     { path: 'mis-invitaciones/:id', component: MyInvitationComponent },
     { path: 'logout', component: LogoutComponent },
@@ -86,7 +83,6 @@ const routes: Routes = [
     EventoAccessComponent,
     MyAccountComponent,
     WellnessComponent,
-    MyEventsComponent,
     MyInvitationsComponent,
     LogoutComponent,
     MainComponent,
@@ -94,7 +90,6 @@ const routes: Routes = [
     ExchangeComponent,
     CreateEventComponent,
     NotificationsComponent,
-    MyEventComponent,
     CreatedEventComponent,
     InvitationsComponent,
     InvitationComponent,
