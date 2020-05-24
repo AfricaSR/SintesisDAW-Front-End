@@ -1,1 +1,18 @@
-<p>notifications works!</p>
+<div class="panel d-block justify-content-center">
+    <div class="notifications clearfix">
+        <div class="line"></div>
+        <div *ngFor="let ntf of notifications">
+            <div class="notification" *ngIf="ntf.viewed">
+                <div class="circle"></div>
+                <span class="time">{{ntf.createdAt | date: 'MMM, d HH:mm'}}</span>
+                <p><b>{{ntf.title}}</b> {{ntf.body}}</p>
+            </div>
+            <div class="notViewed" *ngIf="!ntf.viewed">
+                <div class="circle"></div>
+                <span class="time">{{ntf.createdAt | date: 'MMM, d HH:mm'}}</span>
+                <p><b>{{ntf.title}}</b> {{ntf.body}}</p>
+            </div>
+        </div>
+
+    </div>
+</div>

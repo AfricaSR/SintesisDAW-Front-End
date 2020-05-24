@@ -1,3 +1,29 @@
 .flex-fill {
     margin-top: 0;
 }
+
+label {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    top: -30px;
+    left: 120px;
+}
+
+label:before {
+    background: linear-gradient(to bottom right, #66ff66 0%, #66ffcc 100%) no-repeat;
+    color: white;
+    content: "0";
+    font-weight: bold;
+    display: block;
+    border-radius: 50%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    line-height: 23px;
+    transition-duration: 0.4s;
+    transform: scale(1);
+}

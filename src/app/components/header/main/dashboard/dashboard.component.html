@@ -1,2 +1,12 @@
-<app-noticias [News]="News"></app-noticias>
-<app-eventos [Events]="Events"></app-eventos>
+<app-noticias [News]="News" *ngIf="hasNews"></app-noticias>
+<div class="container" *ngIf="!hasNews">
+    <div class="news-item">
+        <h1>No hay noticias frescas... de momento</h1>
+    </div>
+
+</div>
+<app-eventos [Events]="Events" *ngIf="hasEvents"></app-eventos>
+<div class="container" *ngIf="!hasEvents">
+    <h1>No hay eventos para mostrar</h1>
+    <h2>¿Te animas a montar uno?</h2>
+</div>

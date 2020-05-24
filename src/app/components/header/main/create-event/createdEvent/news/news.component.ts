@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup, FormArray, FormBuilder } from '@angular/forms';
 import { UserAuthService } from '../../../../../../services/user-auth.service';
-
+import { SocketService } from '../../../../../../services/socket.service';
 @Component({
   selector: 'app-news',
   templateUrl: './news.component.html',
@@ -17,7 +17,7 @@ export class NewsComponent implements OnInit {
   form: FormGroup;
 
   
-  constructor(public fb: FormBuilder, public userAuthService: UserAuthService) {
+  constructor(public fb: FormBuilder, public userAuthService: UserAuthService, private socketService: SocketService) {
   
     this.form = this.fb.group({
       News: this.fb.array([]),
@@ -45,6 +45,8 @@ export class NewsComponent implements OnInit {
       this.News = res['News'] as any[];
       this.NewsChange.emit(this.News)
     })
+
+    
 
     this.makingNews = false;
     this.makingNewsChange.emit(this.makingNews)

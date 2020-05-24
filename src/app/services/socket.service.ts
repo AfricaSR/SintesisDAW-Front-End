@@ -34,5 +34,13 @@ export class SocketService {
     return this.http.post('http://localhost:3000/getChat', {token, idEvent, idAttend})
   }
 
+  viewNotifications(token: any) {
+    return this.http.post('http://localhost:3000/viewNotifications', token);
+  }
+
+  postNews(idEvent: Number, title: String) {
+    //return this.http.post('http://')
+  }
+
   
 }
