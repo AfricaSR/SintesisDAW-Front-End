@@ -1,12 +1,11 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Event } from '../../../../models/event';
-import { EventInvitations } from '../../../../models/event-invitations';
 import { UserAuthService } from '../../../../services/user-auth.service';
-import { FormControl } from '@angular/forms';
 import { User } from '../../../../models/user';
 import { Wellness } from '../../../../models/wellness';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalComponent } from '../../../modal/modal.component';
+import { SocketService } from '../../../../services/socket.service';
 
 @Component({
   selector: 'app-exchange',
@@ -25,7 +24,7 @@ export class ExchangeComponent implements OnInit {
   declaration: String = "Sí, asístiré al evento";
   confirm: Boolean = true;
 
-  constructor(private userAuthService: UserAuthService, public modal: NgbModal) { }
+  constructor(private userAuthService: UserAuthService, public modal: NgbModal, private socketService: SocketService) { }
 
   ngOnInit(): void {
     this.userAuthService
@@ -69,6 +68,8 @@ export class ExchangeComponent implements OnInit {
         
         this.userAuthService.getEventNonCreated(localStorage['currentUser'], res['ei']['idEvent']).subscribe(resp => {
           this.event = resp['event'] as Event;
+
+          this.socketService.postAttend(this.event['idEvent'], this.currentUser).subscribe()
           
         });
       }else {

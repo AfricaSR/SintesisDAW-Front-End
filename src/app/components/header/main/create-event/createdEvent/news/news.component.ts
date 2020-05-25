@@ -46,6 +46,8 @@ export class NewsComponent implements OnInit {
       this.NewsChange.emit(this.News)
     })
 
+    this.socketService.postNews(this.idEvent, form.controls[0].value['title']).subscribe()
+
     
 
     this.makingNews = false;

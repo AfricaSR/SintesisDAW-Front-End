@@ -30,6 +30,9 @@ export class NotificationsComponent implements OnInit {
         ntfs['LVL_Host'].forEach(e => {
           this.notifications.push(e)
         });
+
+        this.notifications.sort((b,a) => a.createdAt.localeCompare(b.createdAt));
+
       }
     })
 

@@ -39,8 +39,17 @@ export class SocketService {
   }
 
   postNews(idEvent: Number, title: String) {
-    //return this.http.post('http://')
+    return this.http.post('http://localhost:3000/postNews', {idEvent, title})
   }
+
+  postAttend(idEvent: Number, user: any) {
+    return this.http.post('http://localhost:3000/postAttend', {idEvent, user})
+  }
+
+  postWellness(token: any) {
+    return this.http.post('http://localhost:3000/postWellness', token)
+  }
+
 
   
 }

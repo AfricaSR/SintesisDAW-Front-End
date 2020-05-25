@@ -139,12 +139,4 @@ export class UserAuthService {
     return this.http.post('http://localhost:3000/getEventsTimeline', token)
   }
 
-  putAlFromEvent(token: any) {
-    return this.http.post('http://localhost:3000/updateAlFromEvent', token);
-  }
-  putFuFromEvent(token: any) {
-    return this.http.post('http://localhost:3000/updateFuFromEvent', token);
-  }
-
-  
 }

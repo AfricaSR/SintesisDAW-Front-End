@@ -4,6 +4,7 @@ import { UserAuthService } from '../../../services/user-auth.service';
 import { Router } from "@angular/router";
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalComponent } from '../../modal/modal.component';
+import { SocketService } from '../../../services/socket.service';
 @Component({
   selector: 'app-wellness',
   templateUrl: './wellness.component.html',
@@ -15,7 +16,7 @@ export class WellnessComponent implements OnInit {
   Allergenics: Array<Wellness>;
   Functionality: Array<Wellness>;
 
-  constructor(public userAuthService: UserAuthService, private router: Router, public modal: NgbModal) { }
+  constructor(public userAuthService: UserAuthService, private router: Router, public modal: NgbModal, private socketService: SocketService) { }
 
   ngOnInit(): void {
     this.userWellness = new Array<any>();
@@ -64,9 +65,8 @@ export class WellnessComponent implements OnInit {
       resp.componentInstance.titulo = Object.keys(res).toString();
       resp.componentInstance.mensaje = res[resp.componentInstance.titulo];
     });
-
-    this.userAuthService.putAlFromEvent({token: localStorage['currentUser']}).subscribe();
-    this.userAuthService.putFuFromEvent({token: localStorage['currentUser']}).subscribe();
+    
+    this.socketService.postWellness({token: localStorage['currentUser']}).subscribe();
     this.isEditing = false;
 
   }

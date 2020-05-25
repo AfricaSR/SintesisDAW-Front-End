@@ -5,12 +5,12 @@
             <div class="notification" *ngIf="ntf.viewed">
                 <div class="circle"></div>
                 <span class="time">{{ntf.createdAt | date: 'MMM, d HH:mm'}}</span>
-                <p><b>{{ntf.title}}</b> {{ntf.body}}</p>
+                <p><b>{{ntf.title}}</b>&nbsp;<span [innerHTML]="ntf.body"> {{ntf.body}}</span></p>
             </div>
             <div class="notViewed" *ngIf="!ntf.viewed">
                 <div class="circle"></div>
                 <span class="time">{{ntf.createdAt | date: 'MMM, d HH:mm'}}</span>
-                <p><b>{{ntf.title}}</b> {{ntf.body}}</p>
+                <p><b>{{ntf.title}}</b>&nbsp;<span [innerHTML]="ntf.body"> {{ntf.body}}</span></p>
             </div>
         </div>
 
