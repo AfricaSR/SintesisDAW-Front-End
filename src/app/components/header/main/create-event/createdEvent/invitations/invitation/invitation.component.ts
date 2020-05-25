@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
-import { EventInvitations, Invitation, I_Wellness, I_Response } from '../../../../../../../models/event-invitations'
+import { EventInvitations, Invitation, I_Wellness } from '../../../../../../../models/event-invitations'
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { Wellness } from '../../../../../../../models/wellness';
 import { UserAuthService } from '../../../../../../../services/user-auth.service';

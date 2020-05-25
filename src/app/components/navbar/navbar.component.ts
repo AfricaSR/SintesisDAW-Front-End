@@ -42,8 +42,6 @@ export class NavbarComponent implements OnInit {
     })
   }
 
-  removeNotifications() {
-    this.notViewed = 0;
-  }
+ 
 
 }

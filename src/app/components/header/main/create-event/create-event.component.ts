@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
-import { Router, NavigationExtras } from "@angular/router";
+import { Router} from "@angular/router";
 import { UserAuthService } from '../../../../services/user-auth.service';
 import { Event } from '../../../../models/event';
-import { EventInvitations } from '../../../../models/event-invitations';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalComponent } from '../../../modal/modal.component';
-
+import { SocketService } from '../../../../services/socket.service';
 @Component({
   selector: 'app-create-event',
   templateUrl: './create-event.component.html',
@@ -22,7 +21,10 @@ export class CreateEventComponent implements OnInit {
   eventList: Array<Event>;
   hasEvents: Boolean;
 
-  constructor(private userAuthService: UserAuthService, private router: Router, public modal: NgbModal) {
+  constructor(private userAuthService: UserAuthService, 
+    private router: Router, 
+    public modal: NgbModal,
+    private socketService: SocketService) {
   }
 
   ngOnInit(): void {
@@ -143,6 +145,8 @@ export class CreateEventComponent implements OnInit {
     resp.componentInstance.okModal = () => {
       resp.close();
       if (resp.result['__zone_symbol__state']==true){
+
+        this.socketService.postUnvailable({idEvent: idEvent}).subscribe()
         
         this.userAuthService.deleteEvent(localStorage['currentUser'], idEvent).subscribe(res => {
           const opts = {
@@ -152,7 +156,7 @@ export class CreateEventComponent implements OnInit {
           let response;
     
           if (res['msg']){
-            response = { 'Felicitaciones' : res['msg'] };
+            response = { 'Éxito' : res['msg'] };
           }else if (res['error']){
             response = { 'Ha ocurrido un error' : res['error'] };
           }
@@ -163,7 +167,7 @@ export class CreateEventComponent implements OnInit {
           resp.componentInstance.titulo = Object.keys(response).toString();
           resp.componentInstance.mensaje = response[resp.componentInstance.titulo];
         })
- 
+        
       }
     }
     resp.componentInstance.titulo = Object.keys(respuesta).toString();

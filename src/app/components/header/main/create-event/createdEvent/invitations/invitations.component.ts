@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
-import { EventInvitations, Invitation, I_Wellness, I_Response } from '../../../../../../models/event-invitations'
+import { EventInvitations, Invitation, I_Wellness } from '../../../../../../models/event-invitations'
 import { FormControl, FormGroup, FormArray, FormBuilder } from '@angular/forms';
 import { Wellness } from '../../../../../../models/wellness';
 import { UserAuthService } from '../../../../../../services/user-auth.service';
@@ -143,8 +143,7 @@ export class InvitationsComponent implements OnInit {
       confirmed: new FormControl(false),
       member: new FormControl(false),
       alergenics: new FormControl([]),
-      functionality: new FormControl([]),
-      responses: new FormControl('')
+      functionality: new FormControl([])
     }));
 
   }
@@ -159,8 +158,7 @@ export class InvitationsComponent implements OnInit {
       confirmed: new FormControl(false),
       member: new FormControl(false),
       alergenics: new FormControl([]),
-      functionality: new FormControl([]),
-      responses: new FormControl('')
+      functionality: new FormControl([])
     }));
   }
 
@@ -177,8 +175,7 @@ export class InvitationsComponent implements OnInit {
       confirmed: new FormControl(confirmed),
       member: new FormControl(member),
       alergenics: new FormControl(alergenics),
-      functionality: new FormControl(functionality),
-      responses: new FormControl(responses)
+      functionality: new FormControl(functionality)
     }));
 
   }

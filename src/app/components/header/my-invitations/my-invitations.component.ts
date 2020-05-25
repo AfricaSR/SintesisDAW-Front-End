@@ -16,6 +16,7 @@ export class MyInvitationsComponent implements OnInit {
       this.Events = res as any[];
 
       this.Events.forEach(e => {
+
         if (e.closed) {
           e['detail']="Cerrado";
         }else {

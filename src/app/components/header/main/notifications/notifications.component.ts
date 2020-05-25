@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { SocketService } from '../../../../services/socket.service';
-import *  as $ from 'jquery';
 import * as io from "socket.io-client";
 import { isUndefined } from 'util';
+
 @Component({
   selector: 'app-notifications',
   templateUrl: './notifications.component.html',

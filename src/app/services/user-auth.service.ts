@@ -123,6 +123,14 @@ export class UserAuthService {
     return this.http.post('http://localhost:3000/getQuestions', {token, event})
   }
 
+  getResponses(token: any, event: Number) {
+    return this.http.post('http://localhost:3000/getResponses', {token, event})
+  }
+
+  postResponses(token: any, idEvent: Number, answers: any[]) {
+    return this.http.post('http://localhost:3000/sendResponses', {token, idEvent, answers})
+  }
+
   postNews(token: any, event: Number, title: String, body: String) {
     return this.http.post('http://localhost:3000/makeNews', {token, event, title, body})
   }
@@ -138,5 +146,7 @@ export class UserAuthService {
   getDashboardTimeline(token: any) {
     return this.http.post('http://localhost:3000/getEventsTimeline', token)
   }
+
+
 
 }

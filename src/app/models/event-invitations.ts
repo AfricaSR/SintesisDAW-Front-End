@@ -4,10 +4,6 @@ export class EventInvitations {
     invitations: Invitation[];
 
 }
-export class I_Response{
-    question: String;
-    response: String;
-}
 
 export class I_Wellness{
     Wellness: String;
@@ -21,5 +17,4 @@ export class Invitation{
     member: Boolean;
     alergenics: I_Wellness[];
     functionality: I_Wellness[];
-    Responses: I_Response[];
 }

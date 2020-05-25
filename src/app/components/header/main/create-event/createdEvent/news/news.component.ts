@@ -48,7 +48,9 @@ export class NewsComponent implements OnInit {
 
     this.socketService.postNews(this.idEvent, form.controls[0].value['title']).subscribe()
 
-    
+    this.form = this.fb.group({
+      News: this.fb.array([]),
+    });
 
     this.makingNews = false;
     this.makingNewsChange.emit(this.makingNews)

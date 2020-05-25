@@ -7,7 +7,7 @@ import { ModalComponent } from '../../modal/modal.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import *  as $ from 'jquery';
-import { NgForm } from '@angular/forms';
+
 
 @Component({
   selector: 'app-my-account',

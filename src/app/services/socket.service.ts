@@ -50,6 +50,18 @@ export class SocketService {
     return this.http.post('http://localhost:3000/postWellness', token)
   }
 
+  postUnvailable(idEvent: any) {
+    return this.http.post('http://localhost:3000/eventUnavailable', idEvent)
+  }
+
+  postNewQuestion(idEvent: Number, title: String) {
+    return this.http.post('http://localhost:3000/eventNewQuestion', {idEvent, title})
+  }
+
+  postResponse(idUser: Number, title: String, name: String, surname: String) {
+    return this.http.post('http://localhost:3000/eventNewQuestion', {idUser, title, name, surname})
+  }
+
 
   
 }

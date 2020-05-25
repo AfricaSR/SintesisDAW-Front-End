@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup, FormArray, FormBuilder } from '@angular/forms';
 import { UserAuthService } from '../../../../../../services/user-auth.service';
+import { SocketService } from '../../../../../../services/socket.service';
 
 @Component({
   selector: 'app-questions',
@@ -9,6 +10,7 @@ import { UserAuthService } from '../../../../../../services/user-auth.service';
 })
 export class QuestionsComponent implements OnInit {
   @Input() Questions: any[];
+  @Input() titleEvent: String;
   @Input() makingQuestions: Boolean;
   @Input() numInvitados: Number;
   @Output() makingQuestionsChange = new EventEmitter<Boolean>();
@@ -17,7 +19,8 @@ export class QuestionsComponent implements OnInit {
   form: FormGroup;
 
   
-  constructor(public fb: FormBuilder, public userAuthService: UserAuthService) {
+  constructor(public fb: FormBuilder, public userAuthService: UserAuthService,
+    private socketService: SocketService) {
     this.form = this.fb.group({
       questions: this.fb.array([]),
     });
@@ -49,6 +52,12 @@ export class QuestionsComponent implements OnInit {
       this.makingQuestions = false;
       this.makingQuestionsChange.emit(this.makingQuestions)
     })
+
+    this.form = this.fb.group({
+      questions: this.fb.array([]),
+    });
+
+    this.socketService.postNewQuestion(this.idEvent, this.titleEvent).subscribe()
 
   }
 

@@ -11,7 +11,37 @@
                 </li>
             </ul>
         </div>
+
     </div>
+    <div class="container">
+        <h2>Tus respuestas registradas</h2>
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Pregunta</th>
+                        <th>Respuesta</th>
+                    </tr>
+                </thead>
+                <tbody *ngFor="let r of Responses">
+                    <tr>
+                        <td>{{r.question}}</td>
+                        <td>{{r.answer}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <form [formGroup]="form" class="col-md-8 col-11 justify-content-center offset-md-2" *ngIf="hasQuestions">
+
+        <div formArrayName="answers" *ngFor="let creds of form.get('answers')['controls']; let i = index">
+            <ng-container [formGroupName]="i">
+                <input type="text" formControlName="question" readonly style="border: none; display: block">
+                <input type="text" placeholder="Respuesta" formControlName="answer">
+            </ng-container>
+        </div>
+        <button type="button" class="btn btn-info" (click)="saveResponses()">Guardar</button>
+    </form>
 </div>
 
 <app-chat [idEvent]="event.idEvent" [idAttend]="idAttend"></app-chat>

@@ -57,7 +57,7 @@ export class CreatedEventComponent implements OnInit {
   editItem(code: String, appInvitations: any){
     let inv = new Invitation();
     inv = this.eventInvitations.invitations.find(x => x.code == code);
-    appInvitations.editInvitationData(inv['_id'], inv.code, inv.name, inv.surname, inv.confirmed, inv.member, inv.alergenics, inv.functionality, inv.Responses);
+    appInvitations.editInvitationData(inv['_id'], inv.code, inv.name, inv.surname, inv.confirmed, inv.member, inv.alergenics, inv.functionality);
     this.codeInv = code;
     this.editInvitation = true;
   }
