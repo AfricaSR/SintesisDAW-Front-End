@@ -59,7 +59,7 @@ export class SocketService {
   }
 
   postResponse(idUser: Number, title: String, name: String, surname: String) {
-    return this.http.post('http://localhost:3000/eventNewQuestion', {idUser, title, name, surname})
+    return this.http.post('http://localhost:3000/postReponses', {idUser, title, name, surname})
   }
 
 
