@@ -20,6 +20,7 @@ export class MyAccountComponent implements OnInit {
   auxCurrent: User;
   isEditing: Boolean;
   editPassword: Boolean;
+  file: File;
   @ViewChild(DatePickerComponent) editDateBirth;
 
 
@@ -50,6 +51,33 @@ export class MyAccountComponent implements OnInit {
     })
   }
 
+  onFileChange(event){
+
+    if(event.target.files && event.target.files.length>0){//Identifica si hay archivos
+        const file=event.target.files[0];
+
+        if(file.type.includes("image")){//Evaluar si es una imagen
+            const reader= new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload=function load(){
+                this.currentUser.photo = reader.result; //Asignar al thumbnail
+                
+            }.bind(this);
+            this.file=file;
+
+            const formData = new FormData();
+            console.log(this.currentUser.idUser+'.'+this.file.type.split('/')[1])
+            formData.append('image', this.file, this.currentUser.idUser+'.'+this.file.type.split('/')[1])
+            
+            this.userAuthService.addPicture(formData).subscribe(res => {
+              console.log(res)
+            })
+            
+
+        }
+    }
+}
+
   fixAspect() {
     let img = $('#photo-'+this.currentUser.idUser),
     width = img.width(),
@@ -76,6 +104,8 @@ export class MyAccountComponent implements OnInit {
   }
 
   saveUserData() {
+    
+    
     if (this.currentUser.gender=="Hombre"){
       this.currentUser.gender = 'M'
     }else if (this.currentUser.gender=="Mujer"){
@@ -120,7 +150,6 @@ export class MyAccountComponent implements OnInit {
       }
       resp.componentInstance.titulo = 'Error de datos';
       resp.componentInstance.mensaje = 'Las nuevas contraseñas no coinciden';
-      //this.userAuthService.putUserPassword()
 
     }else {
       this.userAuthService.putUserPassword(localStorage['currentUser'], Cp, Np).subscribe(res => {
@@ -144,19 +173,6 @@ export class MyAccountComponent implements OnInit {
 
       });
     }
- /*   const opts = {
-      windowClass: 'myCustomClass'
-    }
-
-    let respuesta = this.getResponse(res);
-
-    const resp = this.modal.open(ModalComponent, opts)
-    resp.componentInstance.closeModal = () => {
-      resp.close();
-    }
-    resp.componentInstance.titulo = Object.keys(respuesta).toString();
-    resp.componentInstance.mensaje = respuesta[resp.componentInstance.titulo];
-    this.userAuthService.putUserPassword()*/
     this.editPassword = false;
   }
 

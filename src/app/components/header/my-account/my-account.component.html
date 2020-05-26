@@ -1,8 +1,9 @@
 <div class="container emp-profile">
+    <input type="file" id="file" placeholder="File" (change)="onFileChange($event)" #fileInput accept="image/">
     <div class="row  d-flex justify-content-center">
         <div class="col-xl-3 col-md-4 col-6">
             <div class='circle'>
-                <img src="{{currentUser.photo}}" alt="" id="photo-{{currentUser.idUser}}" (load)='fixAspect()'>
+                <img *ngIf="currentUser.photo" src="{{currentUser.photo}}" alt="" id="photo-{{currentUser.idUser}}" (load)='fixAspect()'>
             </div>
         </div>
         <div class="col-md-6 col-xl-8">
@@ -94,6 +95,7 @@
             </form>
         </div>
         <div class="col-md-6 d-flex justify-content-center mt-xl-5 mt-md-4 mt-3" *ngIf="isEditing">
+
             <button type="button" class="profile-edit-btn btn-success" (click)="saveUserData()">Guardar</button>
         </div>
         <div class="col-md-6 d-flex justify-content-center mt-xl-5 mt-md-4 mt-3" *ngIf="isEditing">

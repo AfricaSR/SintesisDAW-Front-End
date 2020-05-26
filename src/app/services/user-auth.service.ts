@@ -43,6 +43,10 @@ export class UserAuthService {
     return this.http.post('http://localhost:3000/account', token);
   }
 
+  addPicture(image: FormData) {
+    return this.http.post<any>('http://localhost:3000/addPicture', image);
+  }
+
   putUserProfile(token: any, user: User, dateBirth: any){
     return this.http.put('http://localhost:3000/updateAccount', {token, user, dateBirth})
   }
