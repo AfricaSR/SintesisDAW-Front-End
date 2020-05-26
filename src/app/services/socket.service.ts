@@ -62,6 +62,10 @@ export class SocketService {
     return this.http.post('http://localhost:3000/postReponses', {idUser, title, name, surname})
   }
 
+  postEditEvent(idEvent: Number, title: String) {
+    return this.http.post('http://localhost:3000/postEditEvent', {idEvent, title})
+  }
+
 
   
 }
