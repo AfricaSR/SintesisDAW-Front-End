@@ -151,6 +151,13 @@ export class UserAuthService {
     return this.http.post('http://localhost:3000/getEventsTimeline', token)
   }
 
+  dropQuestion(token: any, idEvent: Number, _id: String) {
+    return this.http.post('http://localhost:3000/dropQuestion', {token, idEvent, _id})
+  }
+
+  dropNews(token: any, idEvent: Number, _id: String) {
+    return this.http.post('http://localhost:3000/dropNews', {token, idEvent, _id})
+  }
 
 
 }

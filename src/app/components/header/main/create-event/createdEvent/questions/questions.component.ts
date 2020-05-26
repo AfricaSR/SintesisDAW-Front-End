@@ -12,7 +12,7 @@ export class QuestionsComponent implements OnInit {
   @Input() Questions: any[];
   @Input() titleEvent: String;
   @Input() makingQuestions: Boolean;
-  @Input() numInvitados: Number;
+  @Input() numInvitados: number;
   @Output() makingQuestionsChange = new EventEmitter<Boolean>();
   @Input() idEvent: Number;
   @Output() QuestionsChange = new EventEmitter<any[]>();
@@ -40,6 +40,7 @@ export class QuestionsComponent implements OnInit {
     }));
   }
 
+
   saveQuestion(form: FormGroup) {
 
     this.userAuthService.postQuestion(localStorage['currentUser'], this.idEvent, form.controls[0].value['question']).subscribe(res => {
@@ -59,6 +60,17 @@ export class QuestionsComponent implements OnInit {
 
     this.socketService.postNewQuestion(this.idEvent, this.titleEvent).subscribe()
 
+  }
+
+  dropQuestion(_id: String) {
+    this.userAuthService.dropQuestion(localStorage['currentUser'], this.idEvent, _id).subscribe(res => {
+      this.Questions = res['questions'] as any[];
+            this.Questions.forEach(e => {
+        e['respuestas'] = e['answers'].length;
+        e['sin'] = this.numInvitados - e['answers'].length;
+      })
+      this.QuestionsChange.emit(this.Questions)
+    })
   }
 
 }

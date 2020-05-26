@@ -12,7 +12,7 @@ export class QuestionComponent implements OnInit {
   @Input() fb: FormBuilder;
   @Input() makingQuestions: Boolean;
   @Output() formSave = new EventEmitter<FormGroup>();
-  @Output() makingQuestionsChange = new EventEmitter<boolean>();
+  @Output() makingQuestionsChange = new EventEmitter<Boolean>();
   constructor() { }
 
   ngOnInit(): void {
@@ -21,6 +21,8 @@ export class QuestionComponent implements OnInit {
   saveItem() {
     const questions = this.form.controls.questions as FormGroup;
     this.formSave.emit(questions);
+    this.makingQuestions = false;
+    this.makingQuestionsChange.emit(this.makingQuestions)
   }
 
   addQuestion() {
@@ -28,6 +30,16 @@ export class QuestionComponent implements OnInit {
     questions.push(this.fb.group({
       question: new FormControl(''),
     }));
+    this.makingQuestions = true;
+    this.makingQuestionsChange.emit(this.makingQuestions)
   }
+
+  cancelQuestion() {
+    const creds = this.form.controls.questions as FormArray;
+    creds.removeAt(creds.length - 1);
+    this.makingQuestions = false;
+    this.makingQuestionsChange.emit(this.makingQuestions)
+  }
+
 
 }

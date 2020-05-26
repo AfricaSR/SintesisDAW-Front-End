@@ -57,4 +57,11 @@ export class NewsComponent implements OnInit {
 
   }
 
+  dropNews(_id: String) {
+    this.userAuthService.dropNews(localStorage['currentUser'], this.idEvent, _id).subscribe(res => {
+      this.News = res['News'] as any[];
+      this.NewsChange.emit(this.News)
+    })
+  }
+
 }

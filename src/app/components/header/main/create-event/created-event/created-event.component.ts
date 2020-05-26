@@ -71,7 +71,6 @@ export class CreatedEventComponent implements OnInit {
 
       this.userAuthService.getNews(localStorage['currentUser'], res['event']['idEvent']).subscribe(resp => {
         this.News = resp['News'] as any[];
-        
       })
       
     });

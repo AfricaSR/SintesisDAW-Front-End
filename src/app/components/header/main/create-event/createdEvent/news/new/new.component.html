@@ -6,5 +6,6 @@
             <input placeholder="Cuerpo" formControlName="body">
         </ng-container>
     </div>
-    <button type="button" class="btn btn-info" (click)="saveItem()">Guardar</button>
+    <button type="button" class="btn btn-info" (click)="saveItem()" *ngIf="makingNews">Guardar</button>
+    <button type="button" class="btn btn-secondary" (click)="cancelNews()" *ngIf="makingNews"><i class="fa fa-trash fa-fw"></i></button>
 </form>

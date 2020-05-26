@@ -4,6 +4,7 @@
             <th class="col">Pregunta</th>
             <th class="col">N# Respuestas</th>
             <th class="col">Sin Responder</th>
+            <th class="col"></th>
         </tr>
     </thead>
     <tbody *ngFor="let q of Questions">
@@ -11,6 +12,7 @@
             <td class="col">{{q.body}}</td>
             <td class="col">{{q.respuestas}}</td>
             <td class="col">{{q.sin}}</td>
+            <td class="col"><button type="button" class="btn btn-secondary" (click)="dropQuestion(q._id)"><i class="fa fa-trash fa-fw"></i></button></td>
         </tr>
     </tbody>
 </table>

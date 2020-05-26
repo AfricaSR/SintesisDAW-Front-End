@@ -4,6 +4,7 @@
             <th class="col">Título</th>
             <th class="col">Cuerpo</th>
             <th class="col">Fecha de Creación</th>
+            <th class="col"></th>
         </tr>
     </thead>
     <tbody *ngFor="let n of News">
@@ -11,6 +12,7 @@
             <td class="col">{{n.title}}</td>
             <td class="col">{{n.body}}</td>
             <td class="col">{{n.createdAt | date: 'dd/MM/yyyy hh:mm'}}</td>
+            <td class="col"><button type="button" class="btn btn-secondary" (click)="dropNews(n._id)"><i class="fa fa-trash fa-fw"></i></button></td>
         </tr>
     </tbody>
 </table>

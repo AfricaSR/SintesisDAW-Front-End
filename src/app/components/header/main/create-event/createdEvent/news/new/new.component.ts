@@ -11,7 +11,7 @@ export class NewComponent implements OnInit {
   @Input() fb: FormBuilder;
   @Input() makingNews: Boolean;
   @Output() formSave = new EventEmitter<FormGroup>();
-  @Output() makingNewsChange = new EventEmitter<boolean>();
+  @Output() makingNewsChange = new EventEmitter<Boolean>();
   constructor() { }
 
   ngOnInit(): void {
@@ -28,6 +28,13 @@ export class NewComponent implements OnInit {
       title: new FormControl(''),
       body: new FormControl(''),
     }));
+  }
+
+  cancelNews() {
+    const creds = this.form.controls.News as FormArray;
+    creds.removeAt(creds.length - 1);
+    this.makingNews = false;
+    this.makingNewsChange.emit(this.makingNews)
   }
 
 }
