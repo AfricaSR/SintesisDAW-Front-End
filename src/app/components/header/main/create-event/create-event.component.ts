@@ -174,4 +174,5 @@ export class CreateEventComponent implements OnInit {
     resp.componentInstance.mensaje = respuesta[resp.componentInstance.titulo];
   }
 
+
 }

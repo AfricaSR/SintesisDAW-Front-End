@@ -213,4 +213,8 @@ export class MyAccountComponent implements OnInit {
   
   }
 
+  uploadFile(e: HTMLElement) {
+    e.click()
+  }
+
 }

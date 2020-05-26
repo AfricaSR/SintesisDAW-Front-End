@@ -1,5 +1,6 @@
 <div class="container emp-profile">
-    <input type="file" id="file" placeholder="File" (change)="onFileChange($event)" #fileInput accept="image/">
+
+
     <div class="row  d-flex justify-content-center">
         <div class="col-xl-3 col-md-4 col-6">
             <div class='circle'>
@@ -9,7 +10,12 @@
         <div class="col-md-6 col-xl-8">
             <form #editForm="ngForm" *ngIf="!editPassword">
                 <div class="container profile-work">
+                    <div class="upload-btn-wrapper d-flex justify-content-lg-start justify-content-center mt-3">
+                        <button class="btnF" (click)="uploadFile(file)">Cambiar foto</button>
+                        <input type="file" #file id="file" placeholder="File" (change)="onFileChange($event)" #fileInput accept="image/">
+                    </div>
                     <div class="row">
+
                         <div *ngIf="!isEditing" class="col-md-6 col-xl-4 col-xl-ml-0 ml-xl-0 profile-head d-flex justify-content-center mt-xl-5 mt-md-4 mt-3 xl-pl-0 form-group">
                             <h1 id="name-{{currentUser.idUser}}">{{currentUser.name}}&nbsp;</h1>
                             <h1 id="surname-{{currentUser.idUser}}">{{currentUser.surname}}</h1>
