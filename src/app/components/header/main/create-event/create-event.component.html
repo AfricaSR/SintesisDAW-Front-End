@@ -5,7 +5,7 @@
         <strong>Diseña tus eventos</strong>
     </h5>
     <div class="container d-flex justify-content-center" *ngIf="!createEvent">
-        <button type="button" class="btn btn-info" (click)="createNewEvent()">Nuevo Evento</button>
+        <button type="button" class="btn btn-info" name="create" (click)="createNewEvent()">Nuevo Evento</button>
     </div>
     <div class="container d-flex justify-content-center mt-3" *ngIf="!createEvent">
 
@@ -53,7 +53,7 @@
 
             <div class="container" *ngIf="createEvent">
                 <button class="btn btn-outline-info btn-rounded btn-block z-depth-0 my-4 waves-effect" type="submit">Guardar</button>
-                <button type="button" class="btn btn-warning" (click)="cancelNewEvent()">Cancelar</button>
+                <button type="button" class="btn btn-warning" name="cancel" (click)="cancelNewEvent()">Cancelar</button>
             </div>
 
         </form>

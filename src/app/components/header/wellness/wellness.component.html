@@ -1,7 +1,7 @@
 <div class="container">
     <div class="card-footer">
-        <button type="button" class="btn btn-primary" *ngIf="!isEditing" (click)="editWellness()">Editar</button>
-        <button type="button" class="btn btn-success" *ngIf="isEditing" (click)="saveWellness()">Guardar</button>
+        <button type="button" class="btn btn-primary" *ngIf="!isEditing" (click)="editWellness()" name="editar">Editar</button>
+        <button type="button" class="btn btn-success" *ngIf="isEditing" (click)="saveWellness()" name="guardar">Guardar</button>
     </div>
     <div class="card text-center">
         <div class="card-header">
@@ -12,7 +12,7 @@
             <ul class="row d-flex justify-content-center">
                 <li class=" col-md-3 col-sm-4 col-5" *ngFor="let a of Allergenics">
                     <input type="checkbox" id="a{{a.idWellness}}" [disabled]="!isEditing" [checked]="userWellness.includes(a.idWellness)" (click)="setUW(a.idWellness)" />
-                    <label for="a{{a.idWellness}}"><img src="../../..{{a.file}}" /></label>
+                    <label for="a{{a.idWellness}}"><img src="../../..{{a.file}}" name="{{a.name}}"/></label>
                     <p class="blockquote text-center">{{a.name}}</p>
                 </li>
             </ul>
