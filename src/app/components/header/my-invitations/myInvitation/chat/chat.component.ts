@@ -12,6 +12,7 @@ import * as io from "socket.io-client";
 export class ChatComponent implements OnInit {
   @ViewChild('msg') inputText: ElementRef;
   public socket;
+  @Input() isHost: Boolean;
   @Input() idEvent: Number;
   @Input() idAttend: Number;
   messages: any[] = new Array<any>();

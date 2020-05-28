@@ -36,12 +36,12 @@
 
         <div formArrayName="answers" *ngFor="let creds of form.get('answers')['controls']; let i = index">
             <ng-container [formGroupName]="i">
-                <input type="text" formControlName="question" readonly style="border: none; display: block">
+                <input type="text" formControlName="question" readonly>
                 <input type="text" placeholder="Respuesta" formControlName="answer">
             </ng-container>
         </div>
-        <button type="button" class="btn btn-info" (click)="saveResponses()">Guardar</button>
+        <button type="button" class="btn btn-info" (click)="saveResponses()" *ngIf="form.get('answers')['controls'].length > 0">Guardar</button>
     </form>
 </div>
 
-<app-chat [idEvent]="event.idEvent" [idAttend]="idAttend"></app-chat>
+<app-chat [idEvent]="event.idEvent" [idAttend]="idAttend" *ngIf="!isHost"></app-chat>

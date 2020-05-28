@@ -7,13 +7,21 @@
     <div class="container d-flex justify-content-center" *ngIf="!createEvent">
         <button type="button" class="btn btn-info" name="create" (click)="createNewEvent()">Nuevo Evento</button>
     </div>
-    <div class="container d-flex justify-content-center mt-3" *ngIf="!createEvent">
+    <div class="container mt-3 justify-content-center text-justify message bg-dark" *ngIf="!createEvent">
+        <p>¿Necesitas exportar tus datos?</p>
+        <p>¡Descarga <b>EvenfyLE</b> y lleva tu información a la plataforma que desees!</p>
+        <p>Es muy sencillo: haz click en el siguiente botón</p>
+        <div class="container d-flex justify-content-center mb-3">
 
-        <a href="http://localhost:3000/EvenfyLe/EvenfyLE.jar" class="btn btn-info mt-3">Descargar EvenfyLE</a>
+            <a href="http://localhost:3000/EvenfyLe/EvenfyLE.jar" class="btn info text-light">Descargar EvenfyLE</a>
 
+        </div>
+        <p>Accede al programa con las credenciales de tu cuenta de <b>Evenfy.es</b>, luego sólo entrás que seleccionar el evento que desees exportar.</p>
+        <p>Tus datos serán almacenados en tu equipo en formato <b>XML</b></p>
     </div>
 
-    <div class="card-body px-lg-5 pt-0">
+
+    <div class="card-body px-lg-5 pt-0 mt-3">
 
 
         <form class="text-center" style="color: #757575;" *ngIf="createEvent" #eventForm="ngForm" (ngSubmit)="saveNewEvent()">
@@ -83,7 +91,7 @@
                             <button type="button" class="btn btn-primary btn-lg active" (click)="displayEventData(event.idEvent)">Administrar</button>
                             <button type="button" class="btn btn-danger btn-lg active" (click)="deleteEvent(event.idEvent)">Borrar</button>
 
-                            <!--<a role="button" class="btn btn-primary btn-lg active" routerLink="[/{{event.idEvent}}, event]">Administrar</a>-->
+
                         </td>
                     </tr>
 

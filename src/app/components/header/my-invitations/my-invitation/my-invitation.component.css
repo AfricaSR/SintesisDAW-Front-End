@@ -31,3 +31,56 @@ ul.timeline>li:before {
     height: 20px;
     z-index: 400;
 }
+
+input,
+textarea {
+    background-color: rgb(160, 169, 252);
+    border: none !important;
+    outline-color: transparent !important;
+    border-radius: 25px;
+    padding-left: 25px;
+    min-height: 40px;
+    margin-left: 1%;
+    margin-right: 1%;
+    width: 100%;
+}
+
+input:focus,
+textarea:focus {
+    border: hidden !important;
+    outline-color: none !important;
+    border-radius: 25px;
+    outline: none !important;
+}
+
+input:-moz-read-only {
+    background-color: rgb(255, 255, 255);
+}
+
+input:read-only {
+    background-color: rgb(255, 255, 255);
+}
+
+span {
+    font-family: 'montserrat alternates', sans-serif;
+    font-weight: bold;
+    margin-left: 1%;
+    margin-right: 1%;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-around !important;
+}
+
+.buttons>button {
+    border-radius: 25px;
+    width: 150px;
+    height: 40px;
+    color: white;
+    font-weight: bold;
+}
+
+.cp {
+    max-width: 150px !important;
+}

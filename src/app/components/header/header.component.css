@@ -6,6 +6,18 @@ aside {
     overflow-x: hidden;
 }
 
+h1,
+i {
+    background: -webkit-linear-gradient(#66ff66, #66ffcc);
+    -webkit-background-clip: text;
+    background-clip: 0;
+    -webkit-text-fill-color: transparent;
+}
+
+a {
+    font-weight: bold;
+}
+
 @media only screen and (max-width: 400px) {
     h1 {
         font-size: medium !important;
