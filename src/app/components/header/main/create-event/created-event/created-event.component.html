@@ -55,7 +55,7 @@
                 <div class="row d-flex justify-content-center mt-4">
 
                     <ngb-datepicker #dp [(ngModel)]="model" (navigate)="date = $event.next" (change)="selectYearMonth(dp, tp)" [ngModelOptions]="{standalone: true}"> </ngb-datepicker>
-                    <ngb-timepicker #tp [(ngModel)]="time" [meridian]="true" (click)="selectHour(dp, tp)" [ngModelOptions]="{standalone: true}"></ngb-timepicker>
+                    <ngb-timepicker #tp [(ngModel)]="time" class="m-auto" [meridian]="true" (click)="selectHour(dp, tp)" [ngModelOptions]="{standalone: true}"></ngb-timepicker>
                 </div>
                 <div class="justify-space-around buttons mt-4">
                     <button type="button" class="btn btn-success editing" (click)="saveEditEvent()">Guardar</button>

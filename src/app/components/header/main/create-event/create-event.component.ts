@@ -113,6 +113,25 @@ export class CreateEventComponent implements OnInit {
       resp.componentInstance.mensaje = response[resp.componentInstance.titulo];
     });
     this.createEvent = false;
+    this.eventList = new Array<Event>();
+    this.userAuthService.getEventListCreated({token: localStorage['currentUser']}).subscribe(res => {
+      
+      if (res['length']>0){
+        this.hasEvents = true;
+        this.eventList = res as Event[];
+      }else {
+        this.hasEvents = false;
+
+      }
+
+      this.eventList.forEach(e => {
+        this.userAuthService.getEventInvitations(localStorage['currentUser'], e.idEvent).subscribe(res => {
+          e['invitados'] = res['invitations'].length;
+          e['asistentes'] = res['invitations'].filter((obj) => obj['confirmed'] === true).length;
+        })
+      })
+      
+    })
   }
 
   cancelNewEvent() {

@@ -8,7 +8,8 @@ aside {
 
 h1,
 i {
-    background: -webkit-linear-gradient(#66ff66, #66ffcc);
+    background: rgb(101, 23, 230);
+    background: linear-gradient(135deg, rgba(101, 23, 230, 1) 12%, rgba(10, 28, 240, 1) 38%, rgba(2, 117, 217, 1) 69%, rgba(10, 236, 240, 1) 91%, rgba(9, 230, 126, 1) 100%);
     -webkit-background-clip: text;
     background-clip: 0;
     -webkit-text-fill-color: transparent;
@@ -18,13 +19,39 @@ a {
     font-weight: bold;
 }
 
+
+/* width */
+
+::-webkit-scrollbar {
+    width: 10px;
+    border-radius: 10px;
+}
+
+
+/* Track */
+
+ ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+
+/* Handle */
+
+ ::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+
+/* Handle on hover */
+
+ ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
 @media only screen and (max-width: 400px) {
     h1 {
         font-size: medium !important;
         margin: auto;
-    }
-    i {
-        max-width: 10px !important;
     }
 }
 

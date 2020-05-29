@@ -4,10 +4,10 @@
             <table class="table table-striped w-auto">
                 <tbody>
                     <tr class="row">
-                        <td><input placeholder="Nombre" class="editor-tag" formControlName="name"></td>
-                        <td><input placeholder="Apellidos" class="editor-tag" formControlName="surname"></td>
+                        <td><input placeholder="Nombre" class="editor-tag input" formControlName="name"></td>
+                        <td><input placeholder="Apellidos" class="editor-tag input" formControlName="surname"></td>
 
-                        <td> <select class="editor-tag" formControlName="confirmed">
+                        <td><span>Confirmado</span> <select class="editor-tag input" formControlName="confirmed">
                             <option disabled="disabled">Confirmado</option>
                             <option value="true">Sí</option>
                             <option value="false">No</option>
@@ -15,7 +15,8 @@
                     </tr>
                     <tr class="row">
                         <td>
-                            <div class="editor-tag">
+                            <div class="editor-tag input">
+                                <span>Alérgenos</span>
                                 <span class="tag-itemA" *ngFor="let tagA of tagsA">
                                   {{tagA}}
                                   <span class="remove-tag" (click)="removeTagA(tagA)">×</span>
@@ -25,7 +26,8 @@
                             </div>
                         </td>
                         <td>
-                            <div class="editor-tag">
+                            <div class="editor-tag input">
+                                <span>Diversidad</span>
                                 <span class="tag-itemF" *ngFor="let tagF of tagsF">
                                   {{tagF}}
                                   <span class="remove-tag" (click)="removeTagF(tagF)">×</span>

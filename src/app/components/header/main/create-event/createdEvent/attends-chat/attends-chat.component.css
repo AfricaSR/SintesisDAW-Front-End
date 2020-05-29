@@ -155,7 +155,8 @@ img {
     float: left;
     padding: 30px 15px 0 25px;
     width: 60%;
-    background: linear-gradient(to bottom right, #66ff66 0%, #66ffcc 100%) no-repeat;
+    background: rgb(101, 23, 230);
+    background: linear-gradient(135deg, rgba(101, 23, 230, 1) 12%, rgba(10, 28, 240, 1) 38%, rgba(2, 117, 217, 1) 69%, rgba(10, 236, 240, 1) 91%, rgba(9, 230, 126, 1) 100%);
     border-radius: 50px;
 }
 
@@ -203,8 +204,8 @@ img {
     font-size: 17px;
     height: 33px;
     position: absolute;
-    right: 0;
-    top: 11px;
+    right: 10px;
+    top: 10px;
     width: 33px;
 }
 
@@ -228,5 +229,34 @@ img {
     }
     .mesgs {
         display: block;
+    }
+}
+
+@media only screen and (min-width: 732px) {
+    .type_msg {
+        border-top: 1px solid #c4c4c4;
+        position: relative;
+        background-color: #ffffff;
+        width: 55% !important;
+        margin: 0 !important;
+        position: absolute;
+        bottom: 120px;
+        border-radius: 25px;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+}
+
+@media only screen and (max-width: 732px) {
+    .type_msg {
+        border-top: 1px solid #c4c4c4;
+        position: relative;
+        background-color: #ffffff;
+        width: 100% !important;
+        position: relative;
+        left: -1vw;
+        bottom: 5vh;
+        margin: auto;
+        border-radius: 25px;
     }
 }

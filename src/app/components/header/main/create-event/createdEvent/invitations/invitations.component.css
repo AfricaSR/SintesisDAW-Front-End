@@ -11,3 +11,46 @@
 .dropdown-menu>.dropdown-item:hover {
     background-color: lightblue !important;
 }
+
+input,
+textarea,
+.input {
+    background-color: rgb(160, 169, 252);
+    border: none !important;
+    outline-color: transparent !important;
+    border-radius: 25px;
+    padding-left: 25px;
+    min-height: 40px;
+    margin-left: 1%;
+    margin-right: 1%;
+}
+
+input:focus,
+textarea:focus,
+.input:focus {
+    border: hidden !important;
+    outline-color: none !important;
+    border-radius: 25px;
+    outline: none !important;
+}
+
+textarea {
+    height: 10vh !important;
+}
+
+span {
+    font-family: 'montserrat alternates', sans-serif;
+    font-weight: bold;
+    margin-left: 1%;
+    margin-right: 1%;
+}
+
+button {
+    border-radius: 25px;
+    height: 40px;
+    font-weight: bold;
+}
+
+.cp {
+    max-width: 150px !important;
+}

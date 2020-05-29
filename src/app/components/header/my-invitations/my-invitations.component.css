@@ -62,7 +62,8 @@ h3.h3 {
 
 .product-grid .social li a {
     color: #fff;
-    background: linear-gradient(to bottom right, #66ff66 0%, #66ffcc 100%) no-repeat;
+    background: rgb(101, 23, 230);
+    background: linear-gradient(135deg, rgba(101, 23, 230, 1) 12%, rgba(10, 28, 240, 1) 38%, rgba(2, 117, 217, 1) 69%, rgba(10, 236, 240, 1) 91%, rgba(9, 230, 126, 1) 100%);
     font-size: 16px;
     line-height: 40px;
     text-align: center;
@@ -81,7 +82,8 @@ h3.h3 {
 
 .product-grid .social li a:hover {
     color: #fff;
-    background: linear-gradient(to bottom right, #66ff66 0%, #66ffcc 100%) no-repeat;
+    background: rgb(101, 23, 230);
+    background: linear-gradient(135deg, rgba(101, 23, 230, 1) 12%, rgba(10, 28, 240, 1) 38%, rgba(2, 117, 217, 1) 69%, rgba(10, 236, 240, 1) 91%, rgba(9, 230, 126, 1) 100%);
 }
 
 .product-grid .social li a:after,
@@ -118,7 +120,8 @@ h3.h3 {
 
 .product-grid .product-new-label {
     color: #fff;
-    background: linear-gradient(to bottom right, #66ff66 0%, #66ffcc 100%) no-repeat;
+    background: rgb(101, 23, 230);
+    background: linear-gradient(135deg, rgba(101, 23, 230, 1) 12%, rgba(10, 28, 240, 1) 38%, rgba(2, 117, 217, 1) 69%, rgba(10, 236, 240, 1) 91%, rgba(9, 230, 126, 1) 100%);
     font-size: 12px;
     font-weight: bold;
     text-transform: uppercase;
