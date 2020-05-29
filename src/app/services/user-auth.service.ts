@@ -14,21 +14,21 @@ export class UserAuthService {
 
   //Enviar login al backend
   setLogin(login: any){
-    return this.http.post('http://localhost:3000/inicio', login);
+    return this.http.post('http://evenfy.es:3000/inicio', login);
   }
 
   //Enviar registro al backend
   setRegister(register: any) {
-    return this.http.post('http://localhost:3000/create-account', register);
+    return this.http.post('http://evenfy.es:3000/create-account', register);
   }
 
   //Enviar la recuperación al servidor
   setRecovery(email: String) {
-    return this.http.post('http://localhost:3000/recovery', email);
+    return this.http.post('http://evenfy.es:3000/recovery', email);
   }
 
   getHome(token: any) {
-    return this.http.post('http://localhost:3000/home', token);
+    return this.http.post('http://evenfy.es:3000/home', token);
   }
 
   isAutenticated() {
@@ -40,127 +40,127 @@ export class UserAuthService {
   }
 
   getUserProfile(token: any){
-    return this.http.post('http://localhost:3000/account', token);
+    return this.http.post('http://evenfy.es:3000/account', token);
   }
 
   addPicture(image: FormData) {
-    return this.http.post<any>('http://localhost:3000/addPicture', image);
+    return this.http.post<any>('http://evenfy.es:3000/addPicture', image);
   }
 
   putUserProfile(token: any, user: User, dateBirth: any){
-    return this.http.put('http://localhost:3000/updateAccount', {token, user, dateBirth})
+    return this.http.put('http://evenfy.es:3000/updateAccount', {token, user, dateBirth})
   }
 
   putUserPassword(token: any, oldPassword: String, password: String){
-    return this.http.put('http://localhost:3000/updatePassword', {token, oldPassword, password})
+    return this.http.put('http://evenfy.es:3000/updatePassword', {token, oldPassword, password})
   }
 
   deleteUser(token: any){
-    return this.http.post('http://localhost:3000/deleteUser', token)
+    return this.http.post('http://evenfy.es:3000/deleteUser', token)
   }
 
   getUserWellness(token: any) {
-    return this.http.post('http://localhost:3000/userWellness', token)
+    return this.http.post('http://evenfy.es:3000/userWellness', token)
   }
 
   putUserWellness(token: any, wellnessList: any){
-    return this.http.put('http://localhost:3000/updateWellness', {token, wellnessList})
+    return this.http.put('http://evenfy.es:3000/updateWellness', {token, wellnessList})
   }
 
   getWellnessAList() {
-    return this.http.get('http://localhost:3000/wellness/alergenics');
+    return this.http.get('http://evenfy.es:3000/wellness/alergenics');
   }
 
   getWellnessDList() {
-    return this.http.get('http://localhost:3000/wellness/diversity');
+    return this.http.get('http://evenfy.es:3000/wellness/diversity');
   }
 
   getEventListCreated(token: any){
-    return this.http.post('http://localhost:3000/eventListCreated', token)
+    return this.http.post('http://evenfy.es:3000/eventListCreated', token)
   }
 
   postNewEvent(token: any, event: any){
-    return this.http.post('http://localhost:3000/createEvent', {token, event})
+    return this.http.post('http://evenfy.es:3000/createEvent', {token, event})
   }
 
   editEvent(token: any, event: any) {
-    return this.http.post('http://localhost:3000/editEvent', {token, event})
+    return this.http.post('http://evenfy.es:3000/editEvent', {token, event})
   }
 
   deleteEvent(token: any, idEvent: Number) {
-    return this.http.post('http://localhost:3000/deleteEvent', {token, idEvent})
+    return this.http.post('http://evenfy.es:3000/deleteEvent', {token, idEvent})
   }
 
   getEventCreated(token: any, event: any){
-    return this.http.post('http://localhost:3000/eventCreated', {token, event});
+    return this.http.post('http://evenfy.es:3000/eventCreated', {token, event});
   }
 
   getEventNonCreated(token: any, event: any){
-    return this.http.post('http://localhost:3000/eventNonCreated', {token, event});
+    return this.http.post('http://evenfy.es:3000/eventNonCreated', {token, event});
   }
 
   exchangeInvitation(token: any, event: Number, nameSurname: String, role: String, confirmationCode: String, confirmed: Boolean){
-    return this.http.post('http://localhost:3000/createAttend', {token, event, nameSurname, role, confirmationCode, confirmed});
+    return this.http.post('http://evenfy.es:3000/createAttend', {token, event, nameSurname, role, confirmationCode, confirmed});
   }
 
   getEventInvitations(token: any, idEvent: Number){
-    return this.http.post('http://localhost:3000/getEventInvitations', {token, idEvent});
+    return this.http.post('http://evenfy.es:3000/getEventInvitations', {token, idEvent});
   }
 
   postNewInvitation(token: any, idEvent: Number, invitation: any){
-    return this.http.post('http://localhost:3000/createInvitation', {token, idEvent, invitation});
+    return this.http.post('http://evenfy.es:3000/createInvitation', {token, idEvent, invitation});
   }
 
   deleteEventInvitation(token: any, idEvent: Number, code: String){
-    return this.http.post('http://localhost:3000/deleteEventInvitation', {token, idEvent, code});
+    return this.http.post('http://evenfy.es:3000/deleteEventInvitation', {token, idEvent, code});
   }
 
   putEventInvitation(token: any, idEvent: Number, invitation: any) {
-    return this.http.post('http://localhost:3000/editEventInvitation', {token, idEvent, invitation});
+    return this.http.post('http://evenfy.es:3000/editEventInvitation', {token, idEvent, invitation});
   }
 
   getEventInvitation(token: any, code: String, invitation: String) {
-    return this.http.post('http://localhost:3000/getEventInvitation', {token, code, invitation});
+    return this.http.post('http://evenfy.es:3000/getEventInvitation', {token, code, invitation});
   }
 
   postQuestion(token: any, event: Number, question: String) {
-    return this.http.post('http://localhost:3000/makeQuestion', {token, event, question})
+    return this.http.post('http://evenfy.es:3000/makeQuestion', {token, event, question})
   }
 
   getQuestions(token: any, event: Number) {
-    return this.http.post('http://localhost:3000/getQuestions', {token, event})
+    return this.http.post('http://evenfy.es:3000/getQuestions', {token, event})
   }
 
   getResponses(token: any, event: Number) {
-    return this.http.post('http://localhost:3000/getResponses', {token, event})
+    return this.http.post('http://evenfy.es:3000/getResponses', {token, event})
   }
 
   postResponses(token: any, idEvent: Number, answers: any[]) {
-    return this.http.post('http://localhost:3000/sendResponses', {token, idEvent, answers})
+    return this.http.post('http://evenfy.es:3000/sendResponses', {token, idEvent, answers})
   }
 
   postNews(token: any, event: Number, title: String, body: String) {
-    return this.http.post('http://localhost:3000/makeNews', {token, event, title, body})
+    return this.http.post('http://evenfy.es:3000/makeNews', {token, event, title, body})
   }
 
   getNews(token: any, event: Number) {
-    return this.http.post('http://localhost:3000/getNews', {token, event})
+    return this.http.post('http://evenfy.es:3000/getNews', {token, event})
   }
 
   getDashboardNews(token: any) {
-    return this.http.post('http://localhost:3000/getEventsNews', token)
+    return this.http.post('http://evenfy.es:3000/getEventsNews', token)
   }
 
   getDashboardTimeline(token: any) {
-    return this.http.post('http://localhost:3000/getEventsTimeline', token)
+    return this.http.post('http://evenfy.es:3000/getEventsTimeline', token)
   }
 
   dropQuestion(token: any, idEvent: Number, _id: String) {
-    return this.http.post('http://localhost:3000/dropQuestion', {token, idEvent, _id})
+    return this.http.post('http://evenfy.es:3000/dropQuestion', {token, idEvent, _id})
   }
 
   dropNews(token: any, idEvent: Number, _id: String) {
-    return this.http.post('http://localhost:3000/dropNews', {token, idEvent, _id})
+    return this.http.post('http://evenfy.es:3000/dropNews', {token, idEvent, _id})
   }
 
 
